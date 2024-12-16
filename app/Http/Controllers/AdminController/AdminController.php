@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Session;
 use App\Models\product;
 use App\Models\category;
 use App\Models\admin;
+use App\Models\brand;
+
 
 
 class AdminController extends Controller
@@ -56,7 +58,9 @@ class AdminController extends Controller
 
     public function  product_create(){
         $category = category::where('status',1)->get();
-        return view('Admin.product.create',['category'=>$category]);
+        $brand = brand::where('status',1)->get();
+
+        return view('Admin.product.create',['category'=>$category,'brand'=>$brand]);
     }
 
     public function  category_create(){
