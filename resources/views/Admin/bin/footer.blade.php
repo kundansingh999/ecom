@@ -43,7 +43,7 @@
                 <div class="col-6  mb-3">
                     <h5 style="color:black;">Mail Us:</h5>
                     <p>Shop_Smart Internet private Limited,<br>
-                        Buildings Smart city Muzaffarpur  <br>
+                        Buildings Smart city Muzaffarpur <br>
                         Muzaffarpur,842001 <br>
                         Bihar, India
                     </p>
@@ -71,7 +71,7 @@
             </div>
 
 
- 
+
 
 
 
@@ -104,8 +104,14 @@
     </div>
 
     <!-- Copyright -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+    </script>
+ <script src="{{asset('assets/Admin/common.js')}}"></script>
+
     </footer>
-     </section>
+    </section>
     </body>
 
 </div>

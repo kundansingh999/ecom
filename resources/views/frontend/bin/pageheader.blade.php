@@ -12,8 +12,12 @@
  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
  </script>
+     <link href="{{asset('assets\css\style.css')}}" rel="stylesheet"/>
 
  <body>
+
+    <!------------------------------------------------------Nav--------------------------------------------->
+    
      <div class="">
          <nav class="navbar navbar-expand-lg text-white bg-info" >
              <div class="container-fluid">
@@ -26,15 +30,25 @@
                  <div class="collapse navbar-collapse" id="navbarSupportedContent">
                      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                      <li class="nav-item text-white">
-                        <img src="{{asset('assets\img\logo.jpg')}}" alt="">
+                        <a href="{{url('/')}}"></a>
+                        <img src="{{asset('assets\img\logo.jpg')}}" alt="logo">
                           </li>
 
                          <li class="nav-item">
-                             <a class="nav-link active" aria-current="page" href="#">Home</a>
+                             <a class="nav-link active" aria-current="page" href="{{url('/')}}">Home</a>
                          </li>
                          <li class="nav-item">
-                             <a class="nav-link" href="#">Product</a>
+                         <a class="nav-link" href="{{url('product')}}">Product</a>
                          </li>
+
+                         <li class="nav-item">
+                            <a class="nav-link" href="{{url('product-detail')}}" style="font-weight:700;">Product-detail</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{url('check-out')}}" style="font-weight:700;">check-out</a>
+                        </li>
+                        
                          <li class="nav-item dropdown">
                              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                                  aria-expanded="false">
@@ -49,15 +63,15 @@
                               </ul>
                          </li>
                          <li class="nav-item">
-                             <a class="nav-link " aria-disabled="true">Contact</a>
+                             <a class="nav-link " href="{{url('contact-us')}}" aria-disabled="true">Contact</a>
                          </li>
 
                          <li class="nav-item">
-                             <a class="nav-link " aria-disabled="true">Cart</a>
+                             <a class="nav-link "  href="{{url('cart')}}" aria-disabled="true">Cart</a>
                          </li>
 
                          <li class="nav-item">
-                             <a class="nav-link " aria-disabled="true">About</a>
+                             <a class="nav-link " href="{{url('about')}}" aria-disabled="true">About</a>
                          </li>
                      </ul>
                      <form class="d-flex" role="search">

@@ -1,0 +1,46 @@
+@media (max-width: 768px) {
+    .product-detail {
+         /* display: block !important;  */
+          flex-direction: column;
+    }
+
+    .cartproduct{
+        flex-direction: column;
+ 
+    }
+    .signupimage{
+        display: none;
+    }
+
+ }
+
+ .category-section {
+    padding: 0px;
+    width: 92%;
+}
+
+
+.category-div img {
+    max-width: 80px; /* Limit the max width of images */
+    height: auto;    /* Maintain aspect ratio */
+}
+
+label {
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.cat {
+    box-shadow: 1px 1px 5px rgba(25, 35, 55, 0.5);
+  }
+
+  input{
+    height: 50px;
+    border: 1px solid red;
+  }
+
+  .error{
+    color:red;
+  }
+  
