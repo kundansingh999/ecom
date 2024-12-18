@@ -1,83 +1,18 @@
  @include('frontend.bin.header')
- <!-- <div class="container category-section">
-     <div class="row category-row p-4">
-         <div class="col-2 category-div">
-             <img src="{{asset('assets\img\mobile.webp')}}" alt="">
-             <br><label style="font-weight:700;" for="">Mobile</label>
-         </div>
-
-         <div class="col-2">
-             <img src="{{asset('assets\img\glocery.webp')}}" alt="">
-             <br> <label style="font-weight:700; " for="">Grocery</label>
-         </div>
-
-         <div class="col-2">
-             <img src="{{asset('assets\img\applience.webp')}}" alt="">
-             <br> <label style="font-weight:700;" for="">Appliances</label>
-         </div>
-
-         <div class="col-2">
-             <img src="{{asset('assets\img\mobile.webp')}}" alt="">
-             <br><label style="font-weight:700;" for="">Beauty Toys</label>
-         </div>
-
-         <div class="col-2">
-             <img src="{{asset('assets\img\mobile.webp')}}" alt="">
-             <br><label style="font-weight:700;" for="">Fashion</label>
-         </div>
-
-         <div class="col-2">
-             <img src="{{asset('assets\img\mobile.webp')}}" alt="">
-             <br> <label style="font-weight:700;" for="">Electronics</label>
-         </div>
-
-
-
-
-
-
-     </div>
- </div> -->
  <div class="container category-section ">
-    <div class="container">
-     <div class="row category-row mt-4 cat">  
-         <!-- Mobile -->
-         <div class="col-6 col-md-4 col-lg-2 category-div text-center mb-3">
-             <img src="{{ asset('assets/img/mobile.webp') }}" class="img-fluid category-image" alt="Mobile">
-             <br>
-             <label style="font-weight:700;">Mobile</label>
+     <div class="container">
+         <div class="row category-row mt-4 cat">
+             @foreach($category as $category)
+             <div class="col-6 col-md-4 col-lg-2 category-div text-center mb-3">
+                <a style="font-weight:700; text-decoration:none;color:black;" href="{{$category->slug}}">
+                 <img src="{{ asset('assets/img/mobile.webp') }}" class="img-fluid category-image" alt="Mobile">
+                 <br>
+                {{$category->name}}
+                 </a>
+             </div>
+             @endforeach
          </div>
-         <!-- Grocery -->
-         <div class="col-6 col-md-4 col-lg-2 category-div text-center mb-3">
-             <img src="{{ asset('assets/img/glocery.webp') }}" class="img-fluid category-image" alt="Grocery">
-             <br>
-             <label style="font-weight:700;">Grocery</label>
-         </div>
-         <!-- Appliances -->
-         <div class="col-6 col-md-4 col-lg-2 category-div text-center mb-3">
-             <img src="{{ asset('assets/img/applience.webp') }}" class="img-fluid category-image" alt="Appliances">
-             <br>
-             <label style="font-weight:700;">Appliances</label>
-         </div>
-         <!-- Beauty Toys -->
-         <div class="col-6 col-md-4 col-lg-2 category-div text-center mb-3">
-             <img src="{{ asset('assets/img/mobile.webp') }}" class="img-fluid category-image" alt="Beauty Toys">
-             <br>
-             <label style="font-weight:700;">Beauty Toys</label>
-         </div>
-         <!-- Fashion -->
-         <div class="col-6 col-md-4 col-lg-2 category-div text-center mb-3">
-             <img src="{{ asset('assets/img/mobile.webp') }}" class="img-fluid category-image" alt="Fashion">
-             <br>
-             <label style="font-weight:700;">Fashion</label>
-         </div>
-         <!-- Electronics -->
-         <div class="col-6 col-md-4 col-lg-2 category-div text-center mb-3">
-             <img src="{{ asset('assets/img/mobile.webp') }}" class="img-fluid category-image" alt="Electronics">
-             <br>
-             <label style="font-weight:700;">Electronics</label>
-         </div>
-     </div>
+         
      </div>
  </div>
 

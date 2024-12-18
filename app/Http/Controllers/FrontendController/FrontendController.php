@@ -5,14 +5,29 @@ namespace App\Http\Controllers\FrontendController;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\product;
+use App\Models\category;
+
 
 
 class FrontendController extends Controller
 {
     public function home()
     {
-        // echo "hello";
-        return view('Frontend.home');
+     $category = product::where('products.status',1)->
+     leftjoin('categories', 'products.category_id', '=', 'categories.id')
+                ->select(
+                    'categories.name',
+                    'categories.slug',
+                    'categories.id',
+                ) 
+                ->groupBy(
+                    'categories.name',
+                      'categories.slug',
+                      'categories.id',
+                  )
+                ->get();
+         return view('Frontend.home', ['category'=>$category]);
+
     }
 
     public function product()

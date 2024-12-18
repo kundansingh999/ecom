@@ -40,7 +40,7 @@ class productcontroller extends Controller
          $pro->product_price = $request->product_price;
          $pro->brand = $request->brand;
          $pro->stock = $request->product_quantity;
-         $pro->size = $request->product_size;
+         $pro->size = json_encode($request->product_size);
         $pro->status = $request->status;
         $pro->slug = Str::slug($request->product_name);
         $pro->image =  $imgProduct;

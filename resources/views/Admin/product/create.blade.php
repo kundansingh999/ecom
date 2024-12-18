@@ -16,7 +16,8 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="product-price">Product Price</label>
-                    <input type="number" class="form-control" id="product-price" name="product_price">
+                    <input type="number" class="form-control productprice" id="product-price" name="product_price">
+                    <h6 class="productpriceError error"></h6>
                 </div>
 
             </div>
@@ -27,20 +28,25 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="product-name">Product Quantity</label>
-                    <input type="number" class="form-control" id="product-quantity" name="product_quantity">
+                    <input type="number" class="form-control productquantity" id="product-quantity"
+                        name="product_quantity">
+                    <h6 class="productquantityError error"></h6>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="product-price">Product Image</label>
-                    <input type="file" class="form-control" id="product-image" name="product-image">
+                    <input type="file" class="form-control productimage" id="product-image" name="product-image">
+                    <h6 class="productimageError error"></h6>
                 </div>
             </div>
         </div>
 
         <div class="col-mb-6">
             <label for="Product_Description" class="form-label">Product Description</label>
-            <textarea class="form-control" id="ProductDescription" name="product_description" rows="10"></textarea>
+            <textarea class="form-control productdescription" id="ProductDescription" name="product_description"
+                rows="10"></textarea>
+            <h6 class="productdescriptionError error"></h6>
         </div>
 
         <div class="row">
@@ -78,24 +84,46 @@
             </div>
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="product-price">Discount Price</label>
-                    <input type="number" class="form-control" id="discount-price" name="discount_price">
+                    <label for="discount-price">Discount Price</label>
+                    <input type="number" class="form-control discountprice" id="discount-price" name="discount_price">
+                    <h6 class="discountpriceError error"></h6>
                 </div>
             </div>
         </div>
+        <label for="product-name">Product Size</label>
+
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-1">
                 <div class="form-group">
-                    <label for="product-name">Product Size</label>
-                    <select class="form-select" id="product-size" name="product_size">
-                         <option value="s">S</option>
-                         <option value="m">M</option>
-                         <option value="l">L</option>
-                         <option value="xl">XL</option>
-                         <option value="xxl">XXL</option>
-                     </select>
+                    <input class="form-check-input" value="s" name="product_size[]" type="checkbox">S
                 </div>
             </div>
+            <div class="col-md-1">
+                <div class="form-group">
+                    <input  class="form-check-input" value="m" name="product_size[]" type="checkbox">M
+                </div>
+            </div>
+
+            <div class="col-md-1">
+                <div class="form-group">
+                    <input  class="form-check-input" value="l" name="product_size[]" type="checkbox">L
+                </div>
+            </div>
+
+            <div class="col-md-1">
+                <div class="form-group">
+                    <input class="form-check-input" value="xl" name="product_size[]"  type="checkbox">XL
+                </div>
+            </div>
+
+            <div class="col-md-1">
+                <div class="form-group">
+                    <input class="form-check-input" value="xxl" name="product_size[]" type="checkbox">XXL
+                </div>
+            </div>
+
+
+
 
 
         </div>

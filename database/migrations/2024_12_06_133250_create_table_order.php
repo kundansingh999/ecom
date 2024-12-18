@@ -23,13 +23,13 @@ return new class extends Migration
             $table->enum(' payment_status',['paid','unpaid']);
             $table->enum('status',['new', 'processing','dispatched','cancel','delivered','out for delivery']);
             $table->String('shipping_id');           
-          $table->String('first_name');
-          $table->String('last_name');
-          $table->String('email');
-          $table->text('address');
-          $table->Integer('mobile_no');
-          $table->Integer('pincode');
-          $table->text('address_2');
+           $table->String('first_name');
+           $table->String('last_name');
+           $table->String('email');
+           $table->text('address');
+           $table->Integer('mobile_no');
+           $table->Integer('pincode');
+           $table->text('address_2');
             $table->timestamps();
         });
     }
