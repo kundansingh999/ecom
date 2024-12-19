@@ -32,7 +32,7 @@ Route::get('/', [FrontendController::class,'home']);
 
 Route::get('product', [FrontendController::class,'product']);
 
-Route::get('product-detail', [FrontendController::class,'product_detail']);
+Route::get('product-detail/{slug}', [FrontendController::class,'product_detail']);
 
 Route::get('cart', [FrontendController::class,'cart']);
 

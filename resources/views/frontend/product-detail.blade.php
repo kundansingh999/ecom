@@ -1,17 +1,17 @@
 @include('frontend.bin.pageheader')
 
 <div class="container  p-4">
-    <h1 style="color:green;"><i class="fa-solid fa-blog"></i> shirt <i class="fa-solid fa-blog"></i></h1>
+    <h1 style="color:green;"><i class="fa-solid fa-blog"></i> {{$product->product_name}} <i class="fa-solid fa-blog"></i></h1>
     <br>
     <div class="row product-detail">
         <div class="col  p-4">
-            <img src="{{asset('assets\img\shirt11.jpg')}}" class="card-img-top" alt="...">
+            <img src="{{asset('assets/product-image'.'/'. $product->image)}}" class="card-img-top" alt="...">
 
         </div>
         <div class="col  p-4">
-            <h2>Solid Men Black Sports Shorts</h2>
+            <h2>{{$product->product_name}}</h2>
             <h3 style="color:green;">special price</h3>
-            <h3>₹500</h3>
+            <h3>₹  <del>{{$product->product_price}}</del> ₹ {{$product->discount_price}}</h3>
             <h3></h3>
             <p>Company-superdry</p>
             <p>Select Size</p>
@@ -36,9 +36,7 @@
                 </div>
             </div>
 
-            <p>The Officer’s Academy is the best BPSC Coaching in Patna Bihar. We also provide Offline and
-                Online/Live Classes apart from Prelims and Mains Test Series in English and Hindi medium.
-            </p>
+            <p> {{$product->product_summary}}</p>
             <a class="btn btn-dark" href="{{url('product-detail')}}"> Buy now</a>
             <a class="btn btn-primary" href="{{url('product-detail')}}"> Add to cart</a>
 

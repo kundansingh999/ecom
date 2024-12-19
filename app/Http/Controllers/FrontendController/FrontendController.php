@@ -26,7 +26,9 @@ class FrontendController extends Controller
                       'categories.id',
                   )
                 ->get();
-         return view('Frontend.home', ['category'=>$category]);
+                $product = product::where('status',1)->limit(4)->orderby('created_at','desc')->get();
+                $men = product::where('status',1)->count();
+         return view('Frontend.home', ['category'=>$category,'product'=>$product,'men'=>$men]);
 
     }
 
@@ -35,9 +37,10 @@ class FrontendController extends Controller
          return view('Frontend.product');
     }
 
-    public function product_detail()
+    public function product_detail($slug)
     {
-         return view('Frontend.product-detail');
+     $product = product::where('slug',$slug)->first();
+         return view('Frontend.product-detail',['product'=>$product]);
     }
 
     public function cart()
