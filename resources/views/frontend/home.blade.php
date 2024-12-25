@@ -52,7 +52,7 @@
                      <p class="card-text">{{$product->product_title}}</p>
                      <h4 class="card-text">₹ <del>{{$product->product_price}}</del> ₹ {{$product->discount_price}}</h4>
                      <a class="btn btn-primary" href="{{url('product-detail'.'/'. $product->slug)}}">Details</a>
-                     <button class="btn btn-primary">Order Now</button>
+                     <button class="btn btn-primary cart" data-productid="{{$product->id}}">Add to cart</button>
                  </div>
              </div>
          </div>
@@ -64,9 +64,9 @@
  </div>
 
  <div>
-    <input type="text" class="user_id" name="user_id" hidden>
+    <input type="text" class="user_id" name="user_id" value="{{Auth::user()->id ?? ''}}" hidden>
  </div>
-  home
+
 
  <div class="container pt-4">
      <h4>Women Fashion Best Collection</h4>
