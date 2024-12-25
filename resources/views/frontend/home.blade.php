@@ -66,6 +66,7 @@
  <div>
     <input type="text" class="user_id" name="user_id" hidden>
  </div>
+  home
 
  <div class="container pt-4">
      <h4>Women Fashion Best Collection</h4>
