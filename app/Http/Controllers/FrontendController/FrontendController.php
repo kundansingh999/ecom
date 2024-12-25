@@ -6,13 +6,16 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\product;
 use App\Models\category;
+use App\Models\slider;
+use App\Models\user_ip;
 
 
 
 class FrontendController extends Controller
 {
-    public function home()
+    public function home(Request $request)
     {
+     $ipaddress = request()->ip();
      $category = product::where('products.status',1)->
      leftjoin('categories', 'products.category_id', '=', 'categories.id')
                 ->select(
@@ -26,21 +29,33 @@ class FrontendController extends Controller
                       'categories.id',
                   )
                 ->get();
-                $product = product::where('status',1)->limit(4)->orderby('created_at','desc')->get();
+                $product = product::where('status',1)->where('category_id',2)->limit(4)->orderby('created_at','desc')->get();
+                $femalewear = product::where('status',1)->where('category_id',3)->limit(4)->orderby('created_at','desc')->get();
+                $kidswear = product::where('status',1)->where('category_id',1)->limit(4)->orderby('created_at','desc')->get();
                 $men = product::where('status',1)->count();
-         return view('Frontend.home', ['category'=>$category,'product'=>$product,'men'=>$men]);
+                $slider = slider::where('status',1)->get();
+                user_ip::create([
+                    'ip_address'=>$ipaddress,
+                ]);
 
+         return view('Frontend.home', ['category'=>$category,'product'=>$product,'men'=>$men,'femalewear'=>$femalewear,'kidswear'=>$kidswear,'slider'=>$slider]);
     }
 
-    public function product()
+    public function product($slug)
     {
-         return view('Frontend.product');
+     $category = category::where('slug',$slug)->first();
+     $product = product::where('status',1)->where('category_id',$category->id)->orderby('created_at','desc')->get();
+     return view('Frontend.product',['product'=>$product]);
     }
 
     public function product_detail($slug)
     {
      $product = product::where('slug',$slug)->first();
-         return view('Frontend.product-detail',['product'=>$product]);
+     if($product){
+          return view('Frontend.product-detail',['product'=>$product]);
+     }else{
+          return back();
+     }
     }
 
     public function cart()

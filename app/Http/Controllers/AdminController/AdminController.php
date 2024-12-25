@@ -97,4 +97,8 @@ public function banner_create(){
         return view('Admin.admin-account-page.create-admin');
     }
 
+    public function slider_create(){
+        return view('Admin.slider.create-slider');
+    }
+
 }

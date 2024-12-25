@@ -19,15 +19,11 @@
  <div class="container p-4">
      <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
          <div class="carousel-inner">
+            @foreach($slider as $slider)
              <div class="carousel-item active">
-                 <img src="{{asset('assets\img\img3.webp')}}" class="d-block w-100" alt="...">
+                 <img src="{{asset('assets/slider-image'.'/'. $slider->slider_image)}}" class="d-block w-100" alt="...">
              </div>
-             <div class="carousel-item">
-                 <img src="{{asset('assets\img\img1.webp')}}" class="d-block w-100" alt="...">
-             </div>
-             <div class="carousel-item">
-                 <img src="{{asset('assets\img\img2.webp')}}" class="d-block w-100" alt="...">
-             </div>
+             @endforeach
          </div>
          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
              data-bs-slide="prev">
@@ -54,7 +50,7 @@
                  <div class="card-body text-center">
                      <h5 class="card-title">{{$product->product_name}}</h5>
                      <p class="card-text">{{$product->product_title}}</p>
-                     <h4 class="card-text">₹ <del>{{$product->product_price}}</del> {{$product->discount_price}}</h4>
+                     <h4 class="card-text">₹ <del>{{$product->product_price}}</del> ₹ {{$product->discount_price}}</h4>
                      <a class="btn btn-primary" href="{{url('product-detail'.'/'. $product->slug)}}">Details</a>
                      <button class="btn btn-primary">Order Now</button>
                  </div>
@@ -67,62 +63,30 @@
      @endif
  </div>
 
+ <div>
+    <input type="text" class="user_id" name="user_id" hidden>
+ </div>
+
  <div class="container pt-4">
      <h4>Women Fashion Best Collection</h4>
      <div class="row row-cols-1 row-cols-md-4 g-4">
+         @foreach($femalewear as $femalewear)
          <div class="col">
              <div class="card ">
-                 <img src="{{asset('assets\img\w1.webp')}}" class="card-img-top" alt="..." style="height: 250px;">
-                 <div class="card-body text-center">
-                     <h5 class="card-title">Shirt</h5>
-                     <p class="card-text">sparky T-shirt</p>
-                     <h4 class="card-text">₹500</h4>
-                     <button type="button" class="btn btn-primary">Order Now</button>
-                 </div>
-             </div>
-         </div>
-
-         <div class="col">
-             <div class="card ">
-                 <img src="{{asset('assets\img\w2.webp')}}" class="card-img-top" alt="..." style="height: 250px;">
-                 <div class="card-body text-center">
-                     <h5 class="card-title">Shirt</h5>
-                     <p class="card-text">sparky T-shirt</p>
-                     <h4 class="card-text">₹500</h4>
-                     <button type="button" class="btn btn-primary">Order Now</button>
-                 </div>
-             </div>
-         </div>
-
-         <div class="col">
-             <div class="card ">
-                 <img src="{{asset('assets\img\women kurti.webp')}}" class="card-img-top" alt="..."
+                 <img src="{{asset('assets/product-image'.'/'. $femalewear->image)}}" class="card-img-top" alt="..."
                      style="height: 250px;">
                  <div class="card-body text-center">
-                     <h5 class="card-title">Shirt</h5>
-                     <p class="card-text">sparky T-shirt</p>
-                     <h4 class="card-text">₹500</h4>
-                     <button type="button" class="btn btn-primary">Order Now</button>
+                     <h5 class="card-title">{{$femalewear->product_name}}</h5>
+                     <p class="card-text">{{$femalewear->product_title}}</p>
+                     <h4 class="card-text">₹ <del>{{$femalewear->product_price}}</del> ₹ {{$femalewear->discount_price}}
+                     </h4>
+                     <a class="btn btn-primary" href="{{url('product-detail'.'/'. $femalewear->slug)}}">Details</a>
+                     <button class="btn btn-primary">Order Now</button>
                  </div>
              </div>
          </div>
-
-         <div class="col">
-             <div class="card ">
-                 <img src="{{asset('assets\img\women saree.webp')}}" class="card-img-top" alt="..."
-                     style="height: 250px;">
-                 <div class="card-body text-center">
-                     <h5 class="card-title">Shirt</h5>
-                     <p class="card-text">sparky T-shirt</p>
-                     <h4 class="card-text">₹500</h4>
-                     <button type="button" class="btn btn-primary">Order Now</button>
-                 </div>
-             </div>
-         </div>
-
+         @endforeach
      </div>
-
-
  </div>
 
 

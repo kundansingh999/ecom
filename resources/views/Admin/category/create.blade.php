@@ -14,7 +14,7 @@
      
         <div class="mb-3">
             <label for="Category_Image" class="form-label">Category Image</label>
-            <input type="file" class="form-control" id="CategoryImage" name="category_image">
+            <input type="file" class="form-control" id="CategoryImage" name="category-image">
         </div>
         <div class="mb-3">
             <label for="Status_Category" class="form-label">Status Category</label>
