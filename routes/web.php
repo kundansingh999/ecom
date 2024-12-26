@@ -85,9 +85,12 @@ Route::get('slider-create', [AdminController::class,'slider_create']);
 Route::post('add-category', [categorycontroller::class,'AddCategory']);
 Route::post('add-slider', [categorycontroller::class,'Addslider']);
 Route::post('add-product', [productcontroller::class,'AddProduct']);
+Route::get('add-cart/{product_id}/{user_id}', [productcontroller::class,'Addcart']);
 
 
 Route::get('category-delete', [categorycontroller::class,'categorydelete']);
+
+
 
 
 

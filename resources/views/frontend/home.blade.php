@@ -82,7 +82,7 @@
                      <h4 class="card-text">₹ <del>{{$femalewear->product_price}}</del> ₹ {{$femalewear->discount_price}}
                      </h4>
                      <a class="btn btn-primary" href="{{url('product-detail'.'/'. $femalewear->slug)}}">Details</a>
-                     <button class="btn btn-primary">Order Now</button>
+                     <button class="btn btn-primary cart" data-productid="{{$femalewear->id}}">Add to cart</button>
                  </div>
              </div>
          </div>

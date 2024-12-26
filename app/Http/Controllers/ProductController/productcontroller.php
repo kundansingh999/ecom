@@ -5,6 +5,7 @@ namespace App\Http\Controllers\ProductController;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\product;
+use App\Models\cart;
 use Illuminate\Support\Str;
 use App\Traits\UploadImage;
 use Illuminate\Support\Facades\Session;
@@ -46,9 +47,25 @@ class productcontroller extends Controller
         $pro->image =  $imgProduct;
         $pro->save();
         return back();
+    }
 
+    public function Addcart($product_id,$user_id){
+        $check_product = cart::where('product_id',$product_id)->where('user_id',$user_id)->first();
+        if (!$check_product){
 
-
+        $cart = new cart();
+        $cart -> user_id = $user_id;
+        $cart -> product_id = $product_id;
+        $cart -> status = 1;
+        $cart -> quantity = 1;
+        $cart -> order_id = mt_rand(1000000,9999999);
+        $cart -> save();
+        }else{
+            cart::where('product_id',$product_id)->where('user_id',$user_id)->update([
+                // 'quantiy' = + +;
+            ]);
+        }
+        return ["message"=>"Add to cart successful"];
     }
     
 }
