@@ -16,7 +16,19 @@ class AdminController extends Controller
 {
     //
     public function product(){
-        return view('Admin.product.index');
+        $prodata =product::where('status',1)->orderby('updated_at','desc')->paginate(10);
+        return view('Admin.product.index',['prodata'=>$prodata]);
+    }
+    public function Editproduct($id){
+        $pros = product::where('id',$id)->first();
+        $category =category::where('status',1)->get();
+        $brand = brand::where('status',1)->get();
+
+        if($pros){
+        return view('Admin.product.edit-product',['category'=>$category,'pros'=>$pros,'brand'=>$brand]);   
+        }else{
+            return back();
+        }
     }
 
     public function category(){

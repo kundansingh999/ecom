@@ -61,11 +61,33 @@ class productcontroller extends Controller
         $cart -> order_id = mt_rand(1000000,9999999);
         $cart -> save();
         }else{
-            cart::where('product_id',$product_id)->where('user_id',$user_id)->update([
-                // 'quantiy' = + +;
-            ]);
+            cart::where('product_id', $product_id)->where('user_id', $user_id)->increment('quantity');
         }
         return ["message"=>"Add to cart successful"];
+    }
+
+    public function EditProduct(Request $request){
+
+        // $request->validate([
+        //     'product_name'=>'required',
+        //     'product_description'=>'required',
+        //     'product_price'=>'required',
+        //     'discount_price'=>'required',
+        //     'brand'=>'required',
+        // ]);
+
+        $id = $request->id;
+        product::where('id',$id)->update([
+            'product_name'=>$request->product_name,
+            'product_summary'=>$request->product_description,
+            'category_id'=>$request->category_id,
+            'discount_price'=>$request->discount_price,
+            'product_price'=>$request->product_price,
+            'brand'=>$request->brand,
+            'stock'=>$request->product_quantity,
+            'status'=>$request->status,
+        ]);
+        return redirect()->to('admin/index');
     }
     
 }
