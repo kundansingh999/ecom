@@ -28,7 +28,7 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 
-Route::get('/', [FrontendController::class,'home']);
+Route::get('/', [FrontendController::class,'home'])->name('/');
 
 Route::get('product/{slug}', [FrontendController::class,'product']);
 
@@ -59,7 +59,7 @@ Route::get('edit-product/{id}', [Admincontroller::class,'EditProduct']);
 Route::get('product', [AdminController::class,'product']);
 Route::get('admin/category', [AdminController::class,'category']);
 Route::get('payment', [AdminController::class,'payment']);
-Route::get('order', [AdminController::class,'order']);
+Route::get('order', [AdminController::class,'order'])->name('admin/order');
 Route::get('banner', [AdminController::class,'banner']);
 Route::get('brand', [AdminController::class,'brand']);
 Route::get('contact-page', [AdminController::class,'contact_page']);
@@ -94,6 +94,7 @@ Route::get('add-cart/{product_id}/{user_id}', [productcontroller::class,'Addcart
 
 
 Route::get('category-delete', [categorycontroller::class,'categorydelete']);
+Route::get('remove-product/{id}', [productcontroller::class,'removeproduct']);
 
 
 

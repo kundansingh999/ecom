@@ -34,41 +34,53 @@
                         <li class="nav-item">
                             <a href="{{url('/')}}"></a>
                             <img src="{{asset('assets\img\logo.jpg')}}" alt="logo">
-                            
+
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="{{url('/')}}" style="font-weight:700;">Home</a>
+                            <a class="nav-link active" aria-current="page" href="{{url('/')}}"
+                                style="font-weight:700;">Home</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{url('product')}}" style="font-weight:700;">Product</a>
                         </li>
 
-                        
+
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#"  style="font-weight:700;"role="button" data-bs-toggle="dropdown"
-                                aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="#" style="font-weight:700;" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
                                 Profile
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="{{url('login')}}" style="font-weight: 700;">Login</a></li>
-                                <li><a class="dropdown-item" href="{{url('register')}}" style="font- weight: 700;">Sign up</a></li>
+                                <li><a class="dropdown-item" href="{{url('login')}}" style="font-weight: 700;">Login</a>
+                                </li>
+                                <li><a class="dropdown-item" href="{{url('register')}}" style="font- weight: 700;">Sign
+                                        up</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link "  href="{{url('contact-us')}}"aria-disabled="true" style="font-weight: 700;">Contact</a>
+                            <a class="nav-link " href="{{url('contact-us')}}" aria-disabled="true"
+                                style="font-weight: 700;">Contact</a>
+                        </li>
+                        <?php
+
+                            use App\Models\cart;
+                            use Illuminate\Support\Facades\Auth;
+
+                            $cart = cart::where('user_id', Auth::id())->count(); 
+                        ?>
+
+                        <li class="nav-item">
+                            <a class="nav-link " href="{{url('cart')}}" aria-disabled="true" style="font-weight:700;">
+                                Cart <sup style="verticle-align:super;font-size:smaller;color:red;">{{$cart}}</sup></a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link " href="{{url('cart')}}" aria-disabled="true"
-                                style="font-weight:700;"> Cart</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link " href="{{url('about')}}" aria-disabled="true" style="font-weight: 700;">About</a>
+                            <a class="nav-link " href="{{url('about')}}" aria-disabled="true"
+                                style="font-weight: 700;">About</a>
                         </li>
 
                         <!-- <li class="nav-item">
@@ -78,9 +90,9 @@
                     <form class="d-flex" role="search">
                         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                         <button class="btn btn-outline-success" type="submit">Search</button>
-                        
+
                     </form>
-                    
+
                 </div>
             </div>
         </nav>

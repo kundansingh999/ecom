@@ -90,4 +90,9 @@ class productcontroller extends Controller
         return redirect()->to('admin/index');
     }
     
+    public function removeproduct($id,Request $request){
+        cart::where('id',$id)->delete();
+        $request->session()->flash('success', 'Remove successfully.');
+        return back();
+    }
 }

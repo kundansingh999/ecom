@@ -4,10 +4,13 @@ namespace App\Http\Controllers\FrontendController;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 use App\Models\product;
 use App\Models\category;
 use App\Models\slider;
 use App\Models\user_ip;
+use App\Models\cart;
 
 
 
@@ -60,7 +63,14 @@ class FrontendController extends Controller
 
     public function cart()
     {
-         return view('Frontend.cart');
+     $data = cart::orderBy('carts.updated_at', 'desc')
+     ->leftjoin('products', 'carts.product_id', '=', 'products.id')
+     ->where('carts.user_id', Auth::id())
+     ->select(
+         'products.*',
+         'carts.*',
+     )->get();   
+         return view('Frontend.cart',['data'=>$data]);
     }
 
     public function check_out()
