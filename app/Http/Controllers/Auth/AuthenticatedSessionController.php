@@ -27,6 +27,7 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
 
         $request->session()->regenerate();
+        $user = Auth::user();
         if($user->admin===0){
             return redirect()->intended(route('/', absolute: false));
         }else{

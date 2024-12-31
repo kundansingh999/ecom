@@ -96,6 +96,8 @@ Route::get('add-cart/{product_id}/{user_id}', [productcontroller::class,'Addcart
 Route::get('category-delete', [categorycontroller::class,'categorydelete']);
 Route::get('remove-product/{id}', [productcontroller::class,'removeproduct']);
 
+Route::get('test/logout', [categorycontroller::class,'test_logout']);
+
 
 
 

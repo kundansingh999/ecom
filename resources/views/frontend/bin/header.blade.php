@@ -61,26 +61,31 @@
                                 </li>
                             </ul>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link " href="{{url('contact-us')}}" aria-disabled="true"
-                                style="font-weight: 700;">Contact</a>
-                        </li>
-                        <?php
 
+                        <?php
                             use App\Models\cart;
                             use Illuminate\Support\Facades\Auth;
-
-                            $cart = cart::where('user_id', Auth::id())->count(); 
+                            $cart = cart::where('user_id', Auth::id())->count();
                         ?>
+                        <li class="nav-item">
+                            <?php if($cart == 0): ?>
+                            <a class="nav-link" href="{{ url('cart') }}" aria-disabled="true" style="font-weight:700;">
+                                Cart </a>
+                            <?php else: ?>
+                            <a class="nav-link" href="{{ url('cart') }}" aria-disabled="true" style="font-weight:700;">
+                                Cart <sup><span
+                                        style="vertical-align:super;font-size:smaller;color:red;">{{ $cart }}</span></sup></a>
+                            <?php endif; ?>
+                        </li>
 
                         <li class="nav-item">
-                            <a class="nav-link " href="{{url('cart')}}" aria-disabled="true" style="font-weight:700;">
-                                Cart <sup style="verticle-align:super;font-size:smaller;color:red;">{{$cart}}</sup></a>
+                            <a class="nav-link " href="{{url('contact-us')}}" aria-disabled="true"
+                                style="font-weight: 700;">Customer Support</a>
                         </li>
 
                         <li class="nav-item">
                             <a class="nav-link " href="{{url('about')}}" aria-disabled="true"
-                                style="font-weight: 700;">About</a>
+                                style="font-weight: 700;">About Us</a>
                         </li>
 
                         <!-- <li class="nav-item">

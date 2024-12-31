@@ -56,7 +56,7 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                                 aria-expanded="false">
-                                Dropdown
+                                Profile
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="#">Login</a></li>
@@ -66,16 +66,17 @@
                                 </li>
                             </ul>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link " href="{{url('contact-us')}}" aria-disabled="true">Contact</a>
-                        </li>
 
                         <li class="nav-item">
                             <a class="nav-link " href="{{url('cart')}}" aria-disabled="true">Cart</a>
                         </li>
+                        
+                        <li class="nav-item">
+                            <a class="nav-link " href="{{url('contact-us')}}" aria-disabled="true">Customer Support</a>
+                        </li>
 
                         <li class="nav-item">
-                            <a class="nav-link " href="{{url('about')}}" aria-disabled="true">About</a>
+                            <a class="nav-link " href="{{url('about')}}" aria-disabled="true">About Us</a>
                         </li>
                     </ul>
                     <form class="d-flex" role="search">

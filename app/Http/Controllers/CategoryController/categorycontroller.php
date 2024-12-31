@@ -8,6 +8,7 @@ use App\Models\category;
 use App\Models\slider;
 use Illuminate\Support\Str;
 use App\Traits\UploadImage;
+use Illuminate\Support\Facades\Auth;
 
 
 
@@ -43,7 +44,6 @@ class categorycontroller extends Controller
 
     public function categorydelete(Request $request)
     {
-        // dd($request->all());
          $category_id = $request->category_id;
         $cat =category::where('id',$category_id)->delete();
         return back();
@@ -51,7 +51,6 @@ class categorycontroller extends Controller
 
     public function Addslider(Request $request)
     {
-        // dd($request->all());
         $request->validate([
             'slider_name'=>'required',
             'slider-image'=>'required',
@@ -71,6 +70,11 @@ class categorycontroller extends Controller
 
         $cat->save();
         return back();
+    }
+
+    public function test_logout(){
+
+        Auth::logout();
     }
 
 
