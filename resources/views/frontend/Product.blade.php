@@ -12,7 +12,7 @@
                     <h5 class="card-title">{{$product->product_name}}</h5>
                     <p class="card-text">{{$product->product_title}}</p>
                     <h4 class="card-text">₹ <del>{{$product->product_price}}</del> ₹ {{$product->discount_price}}</h4>
-                    <a class="btn btn-primary" href="{{url('product-detail'.'/'. $product->slug)}}">Details</a>
+                    <a class="btn btn-primary" href="{{url('product-detail'.'/'. $product->slug .'/'. $product->id)}}">Details</a>
                     <button class="btn btn-primary">Order Now</button>
                 </div>
             </div>

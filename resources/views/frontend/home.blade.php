@@ -5,7 +5,7 @@
              @foreach($category as $category)
              <div class="col-6 col-md-4 col-lg-2 category-div text-center mb-3">
                  <a style="font-weight:700; text-decoration:none;color:black;" href="{{$category->slug}}">
-                     <img src="{{ asset('assets/img/mobile.webp') }}" class="img-fluid category-image" alt="Mobile">
+                     <img src="{{asset('assets/category-image'.'/'. $category->photo)}}" class="img-fluid category-image" alt="Mobile">
                      <br>
                      {{$category->name}}
                  </a>
@@ -44,14 +44,14 @@
          <h4>Mens Wear Collection</h4>
          @foreach($product as $product)
          <div class="col">
-             <div class="card ">
+             <div class="card">
                  <img src="{{asset('assets/product-image'.'/'. $product->image)}}" class="card-img-top" alt="..."
                      style="height: 250px;">
                  <div class="card-body text-center">
                      <h5 class="card-title">{{$product->product_name}}</h5>
                      <p class="card-text">{{$product->product_title}}</p>
                      <h4 class="card-text">₹ <del>{{$product->product_price}}</del> ₹ {{$product->discount_price}}</h4>
-                     <a class="btn btn-primary" href="{{url('product-detail'.'/'. $product->slug)}}">Details</a>
+                     <a class="btn btn-primary" href="{{url('product-detail'.'/'. $product->slug .'/'. $product->id)}}">Details</a>
                      <button class="btn btn-primary cart" data-productid="{{$product->id}}">Add to cart</button>
                  </div>
              </div>
@@ -81,7 +81,7 @@
                      <p class="card-text">{{$femalewear->product_title}}</p>
                      <h4 class="card-text">₹ <del>{{$femalewear->product_price}}</del> ₹ {{$femalewear->discount_price}}
                      </h4>
-                     <a class="btn btn-primary" href="{{url('product-detail'.'/'. $femalewear->slug)}}">Details</a>
+                     <a class="btn btn-primary" href="{{url('product-detail'.'/'. $femalewear->slug .'/'. $femalewear->id)}}">Details</a>
                      <button class="btn btn-primary cart" data-productid="{{$femalewear->id}}">Add to cart</button>
                  </div>
              </div>
@@ -158,5 +158,58 @@
 
 
  </div>
+
+ <div class="container pt-4">
+    <h4>Kids Wear Fashion Best Collection </h4>
+    <div class="row row-cols-1 row-cols-md-4 g-4"> 
+        <div class="col">
+            <div class="card ">
+                <img src="{{asset('assets\img\kids wear.webp')}}" class="card-img-top" alt="..." style="height: 250px;">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Shirt</h5>
+                    <p class="card-text">sparky T-shirt</p>
+                    <h4 class="card-text">₹500</h4>
+                    <button type="button" class="btn btn-primary">Order Now</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card ">
+                <img src="{{asset('assets\img\kids wear.webp')}}" class="card-img-top" alt="..." style="height: 250px;">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Shirt</h5>
+                    <p class="card-text">sparky T-shirt</p>
+                    <h4 class="card-text">₹500</h4>
+                    <button type="button" class="btn btn-primary">Order Now</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card ">
+                <img src="{{asset('assets\img\kids wear.webp')}}" class="card-img-top" alt="..." style="height: 250px;">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Shirt</h5>
+                    <p class="card-text">sparky T-shirt</p>
+                    <h4 class="card-text">₹500</h4>
+                    <button type="button" class="btn btn-primary">Order Now</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card ">
+                <img src="{{asset('assets\img\kids wear.webp')}}" class="card-img-top" alt="..." style="height: 250px;">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Shirt</h5>
+                    <p class="card-text">Sparky T-shirt</p>
+                    <h4 class="card-text">₹500</h4>
+                    <button type="button" class="btn btn-primary">Order Now</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
  @include('frontend.bin.footer')

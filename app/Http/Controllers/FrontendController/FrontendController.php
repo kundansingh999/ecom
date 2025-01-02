@@ -23,11 +23,13 @@ class FrontendController extends Controller
      leftjoin('categories', 'products.category_id', '=', 'categories.id')
                 ->select(
                     'categories.name',
+                    'categories.photo',
                     'categories.slug',
                     'categories.id',
                 ) 
                 ->groupBy(
                     'categories.name',
+                    'categories.photo',
                       'categories.slug',
                       'categories.id',
                   )
@@ -47,13 +49,17 @@ class FrontendController extends Controller
     public function product($slug)
     {
      $category = category::where('slug',$slug)->first();
-     $product = product::where('status',1)->where('category_id',$category->id)->orderby('created_at','desc')->get();
+     if($category){
+          $product = product::where('status',1)->where('category_id',$category->id)->orderby('created_at','desc')->get();
+     }else{
+          $product = product::where('status',1)->orderby('created_at','desc')->get(); 
+     }
      return view('Frontend.product',['product'=>$product]);
     }
 
-    public function product_detail($slug)
+    public function product_detail($slug,$id)
     {
-     $product = product::where('slug',$slug)->first();
+     $product = product::where('slug',$slug)->where('id',$id)->first();
      if($product){
           return view('Frontend.product-detail',['product'=>$product]);
      }else{
