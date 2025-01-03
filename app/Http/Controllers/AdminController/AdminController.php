@@ -110,7 +110,8 @@ public function banner_create(){
     }
 
     public function slider_create(){
-        return view('Admin.slider.create-slider');
+        $category = category::where('status',1)->get();
+        return view('Admin.slider.create-slider',['category'=>$category]);
     }
 
 }

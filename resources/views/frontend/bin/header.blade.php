@@ -51,6 +51,16 @@
                                 data-bs-toggle="dropdown" aria-expanded="false">
                                 Profile
                             </a>
+                            @if(Auth::check())
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" style="font-weight: 700;">{{Auth::user()->name}}</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" style="font-weight: 700;" href="{{url('test/logout')}}">Logout</a>
+                                    <hr class="dropdown-divider">
+                                </li>
+                            </ul>
+                            @else
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="{{url('login')}}" style="font-weight: 700;">Login</a>
                                 </li>
@@ -60,6 +70,7 @@
                                     <hr class="dropdown-divider">
                                 </li>
                             </ul>
+                            @endif
                         </li>
 
                         <?php

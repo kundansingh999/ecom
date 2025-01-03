@@ -34,16 +34,19 @@ class FrontendController extends Controller
                       'categories.id',
                   )
                 ->get();
-                $product = product::where('status',1)->where('category_id',2)->limit(4)->orderby('created_at','desc')->get();
-                $femalewear = product::where('status',1)->where('category_id',3)->limit(4)->orderby('created_at','desc')->get();
+                $product2 = product::where('status',1)->where('category_id',2)->limit(4)->orderby('created_at','desc')->get();
+                $product1 = product::where('status',1)->where('category_id',3)->limit(4)->orderby('created_at','desc')->get();
                 $kidswear = product::where('status',1)->where('category_id',1)->limit(4)->orderby('created_at','desc')->get();
+
+                $product = $product2->merge($product1)->merge($kidswear);
+
                 $men = product::where('status',1)->count();
                 $slider = slider::where('status',1)->get();
                 user_ip::create([
                     'ip_address'=>$ipaddress,
                 ]);
 
-         return view('Frontend.home', ['category'=>$category,'product'=>$product,'men'=>$men,'femalewear'=>$femalewear,'kidswear'=>$kidswear,'slider'=>$slider]);
+         return view('Frontend.home', ['category'=>$category,'product'=>$product,'men'=>$men,'product1'=>$product1,'kidswear'=>$kidswear,'slider'=>$slider]);
     }
 
     public function product($slug)
@@ -60,8 +63,9 @@ class FrontendController extends Controller
     public function product_detail($slug,$id)
     {
      $product = product::where('slug',$slug)->where('id',$id)->first();
+     $simlar = product::where('status',1)->whereNot('id',$id)->where('category_id',$product->category_id)->limit(4)->orderby('created_at','desc')->get(); 
      if($product){
-          return view('Frontend.product-detail',['product'=>$product]);
+          return view('Frontend.product-detail',['product'=>$product,'simlar'=>$simlar]);
      }else{
           return back();
      }

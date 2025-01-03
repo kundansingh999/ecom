@@ -66,6 +66,7 @@ class categorycontroller extends Controller
         $cat =new slider();
         $cat->slider_name = $request->slider_name;
         $cat->status = 1;
+        $cat->category_id = $request->category_id;
         $cat->slider_image = $imgProduct;
 
         $cat->save();
@@ -75,6 +76,7 @@ class categorycontroller extends Controller
     public function test_logout(){
 
         Auth::logout();
+        return back();
     }
 
 

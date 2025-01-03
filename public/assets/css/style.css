@@ -11,12 +11,38 @@
     .signupimage{
         display: none;
     }
+    .btn-sm{
+        margin-bottom: 5px;
+    }
+
+    .category-section {
+        background-color: #f8f9fa; 
+      }
+      
+      .card {
+        border: 1px solid #dee2e6;
+        border-radius: 0.25rem;
+        overflow: hidden;
+      }
+      
+      .card-img-top {
+        transition: transform 0.3s ease-in-out;
+      }
+      
+      .card:hover .card-img-top {
+        transform: scale(1.05); 
+      }
+      
+      .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+      }
 
  }
 
  .category-section {
-    padding: 0px;
-    width: 92%;
+    /* padding: 0px; */
+    width: 85%;
 }
 
 
@@ -44,3 +70,19 @@ label {
     color:red;
   }
   
+.home-image{
+    height: 250px;
+}
+  
+@media (max-width: 768px) {
+    .home-image {
+        height: 137px;
+    }
+
+    .category-section {
+        width: 100%;
+    }
+    .text{
+        font-size: 12px;
+    }
+}
