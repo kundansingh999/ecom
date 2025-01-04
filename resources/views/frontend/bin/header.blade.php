@@ -85,7 +85,7 @@
                             <?php else: ?>
                             <a class="nav-link" href="{{ url('cart') }}" aria-disabled="true" style="font-weight:700;">
                                 Cart <sup><span
-                                        style="vertical-align:super;font-size:smaller;color:red;">{{ $cart }}</span></sup></a>
+                                        style="vertical-align:super;font-size:smaller;color:red;" class="count">{{ $cart }}</span></sup></a>
                             <?php endif; ?>
                         </li>
 

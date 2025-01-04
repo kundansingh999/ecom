@@ -79,12 +79,22 @@ class FrontendController extends Controller
      ->select(
          'products.*',
          'carts.*',
-     )->get();   
-         return view('Frontend.cart',['data'=>$data]);
+     )->get(); 
+     // dd($data);
+     $dat =  $data; 
+
+     if ($data->count() > 0) {
+          return view('Frontend.cart',['data'=>$data,'dat'=>$dat]);
+     }else{
+          return back();
+     }
     }
 
     public function check_out()
     {
+          if (!$cartItems) {
+          return redirect()->back()->with('sucess', 'Cart is empty!');
+          }
          return view('Frontend.check-out');
     }
 

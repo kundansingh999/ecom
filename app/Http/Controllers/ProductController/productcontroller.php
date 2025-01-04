@@ -51,20 +51,60 @@ class productcontroller extends Controller
 
     public function Addcart($product_id,$user_id){
         $check_product = cart::where('product_id',$product_id)->where('user_id',$user_id)->first();
-        if (!$check_product){
 
+        $product = product::where('id',$product_id)->first();
+
+        if (!$check_product){
         $cart = new cart();
         $cart -> user_id = $user_id;
         $cart -> product_id = $product_id;
         $cart -> status = 1;
         $cart -> quantity = 1;
+        $cart -> price=$product->discount_price;
+        $cart -> amount=$product->discount_price;
         $cart -> order_id = mt_rand(1000000,9999999);
         $cart -> save();
         }else{
             cart::where('product_id', $product_id)->where('user_id', $user_id)->increment('quantity');
+
+            cart::where('product_id', $product_id)->where('user_id', $user_id)->update([
+                'price' => $product->discount_price * ($check_product->quantity + 1) 
+            ]);
         }
-        return ["message"=>"Add to cart successful"];
+        $count = cart::where('user_id',$user_id)->count();
+        return ["message"=>"Add to cart successful","count"=>$count];
     }
+
+    public function IncrementProduct($id, Request $request)
+    {
+        $check_product = cart::where('id',$id)->first();
+
+        cart::where('id', $id)->increment('quantity');
+
+        cart::where('id', $id)->update([
+            'price' => $check_product->amount * ($check_product->quantity + 1) 
+        ]);
+        $request->session()->flash('success', 'Increment successfully.');
+        return back();
+    }
+
+    public function decrementProduct($id, Request $request)
+    {
+        $check_product = cart::where('id',$id)->first();
+        if($check_product->quantity == 1)
+        {
+            return back();
+        }else{
+            cart::where('id', $id)->decrement('quantity');
+            cart::where('id', $id)->update([
+                'price' => $check_product->amount * ($check_product->quantity - 1) 
+            ]);
+            $request->session()->flash('success', 'Decrement successfully.');
+        }
+      
+        return back();
+    }
+
 
     public function EditProduct(Request $request){
 

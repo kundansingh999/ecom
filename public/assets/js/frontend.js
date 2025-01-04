@@ -10,6 +10,7 @@ $(document).on('click', '.cart', function () {
             url: url,
             success: function (data){
                 alert('Add to cart successful');
+                $('.count').html(data.count);
             }
         });
     } else {
