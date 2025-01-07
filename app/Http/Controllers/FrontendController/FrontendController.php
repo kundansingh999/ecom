@@ -92,10 +92,21 @@ class FrontendController extends Controller
 
     public function check_out()
     {
-          if (!$cartItems) {
-          return redirect()->back()->with('sucess', 'Cart is empty!');
+     $cartitem = cart::where('user_id',Auth::id())->count();
+     if($cartitem == 0)
+     {
+          return redirect()->to('/');
+     }else{
+          $data = cart::orderBy('carts.updated_at', 'desc')
+          ->leftjoin('products', 'carts.product_id', '=', 'products.id')
+          ->where('carts.user_id', Auth::id())
+          ->select(
+              'products.product_name',
+              'products.id as product_id',
+              'carts.*',
+          )->get(); 
+          return view('Frontend.check-out',['data'=>$data]);
           }
-         return view('Frontend.check-out');
     }
 
     public function about()

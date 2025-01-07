@@ -6,6 +6,7 @@ use App\Http\Controllers\FrontendController\FrontendController;
 use App\Http\Controllers\AdminController\AdminController;
 use App\Http\Controllers\CategoryController\categorycontroller;
 use App\Http\Controllers\ProductController\productcontroller;
+use App\Http\Controllers\orderController\ordercontroller;
 
 
 
@@ -100,6 +101,8 @@ Route::get('test/logout', [categorycontroller::class,'test_logout']);
 
 Route::get('increment-product/{id}', [productcontroller::class,'IncrementProduct']);
 Route::get('decrement-product/{id}', [productcontroller::class,'decrementProduct']);
+
+Route::post('order-now', [ordercontroller::class,'ordernow']);
 
 
 
