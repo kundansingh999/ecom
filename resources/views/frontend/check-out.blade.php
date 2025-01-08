@@ -8,15 +8,19 @@
                     <div class="col-md-4">
                         <input type="text" name="shipping_code" value="5" hidden>
                         <div class="card" style="width: 19rem;">
+                            @foreach($address as $address)
                             <div class="card-body">
                                 <input class="form-check-input" type="checkbox" value="" checked id="flexCheckDefault">
                                 <h5 class="card-title">Address</h5>
-                                <p class="card-text">kundan kumar</p>
-                                <p class="card-text">bhagwanpur muzaffarpur</p>
-                                <p class="card-text">842001</p>
-                                <p class="card-text">7070113636</p>
+                                <p class="card-text">{{$address->name}}</p>
+                                <p class="card-text">{{$address->address}} </p>
+                                <p class="card-text">{{$address->address2}} </p>
+                                <input type="text" name="address_id" value="{{$address->id}}" hidden>
+                                <p class="card-text">{{$address->pin_code}}</p>
+                                <p class="card-text">{{$address->mobile}}</p>
                                 <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
                             </div>
+                            @endforeach
                         </div>
 
                         <div class="card mt-2" style="width: 19rem;">
@@ -96,7 +100,7 @@
 
 
                                     <label for="">Pincode</label>
-                                    <input class="form-control" type="text" name="pincode" id="">
+                                    <input class="form-control" type="text" name="pin_code" id="">
 
                                     <label for="">Mobile no</label>
                                     <input class="form-control" type="text" name="mobile" id="">

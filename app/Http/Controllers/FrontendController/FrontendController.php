@@ -11,6 +11,7 @@ use App\Models\category;
 use App\Models\slider;
 use App\Models\user_ip;
 use App\Models\cart;
+use App\Models\address_master;
 
 
 
@@ -105,7 +106,10 @@ class FrontendController extends Controller
               'products.id as product_id',
               'carts.*',
           )->get(); 
-          return view('Frontend.check-out',['data'=>$data]);
+
+          $address = address_master::where('user_id',Auth::id())->get();
+
+          return view('Frontend.check-out',['data'=>$data,'address'=>$address]);
           }
     }
 

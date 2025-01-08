@@ -15,10 +15,11 @@
             </tr>
         </thead>
         <tbody>
+            @foreach($data as $data)
             <tr>
                 <th scope="row">1</th>
-                <td>Sparky Shirt</td>
-                <td>Shirt</td>
+                <td>{{$data->product_name}}</td>
+                <td>{{$data->quantity}}</td>
                 <td> 
                     <img src="{{ asset('assets/img/mobile.webp') }}" class="img-fluid category-image" alt="Mobile">
                 </td>
@@ -30,51 +31,7 @@
                     <button type="button" class="btn btn-success btn-sm">Status</button>
                 </td>
             </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>Dynamic T-Shirt</td>
-                <td>T-Shirt</td>
-                <td> 
-                    <img src="{{ asset('assets/img/mobile.webp') }}" class="img-fluid category-image" alt="Mobile">
-                </td>
-                <td>Inactive</td>
-                <td>300</td>
-                <td>
-                    <button type="button" class="btn btn-primary btn-sm">Edit</button>
-                    <button type="button" class="btn btn-secondary btn-sm">Delete</button>
-                    <button type="button" class="btn btn-success btn-sm">Status</button>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">1</th>
-                <td>Sparky Shirt</td>
-                <td>Shirt</td>
-                <td> 
-                    <img src="{{ asset('assets/img/mobile.webp') }}" class="img-fluid category-image" alt="Mobile">
-                </td>
-                <td>Active</td>
-                <td>500</td>
-                <td>
-                    <button type="button" class="btn btn-primary btn-sm">Edit</button>
-                    <button type="button" class="btn btn-secondary btn-sm">Delete</button>
-                    <button type="button" class="btn btn-success btn-sm">Status</button>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">1</th>
-                <td>Sparky Shirt</td>
-                <td>Shirt</td>
-                <td> 
-                    <img src="{{ asset('assets/img/mobile.webp') }}" class="img-fluid category-image" alt="Mobile">
-                </td>
-                <td>Active</td>
-                <td>500</td>
-                <td>
-                    <button type="button" class="btn btn-primary btn-sm">Edit</button>
-                    <button type="button" class="btn btn-secondary btn-sm">Delete</button>
-                    <button type="button" class="btn btn-success btn-sm">Status</button>
-                </td>
-            </tr>
+            @endforeach
         </tbody>
     </table>
 </div>
