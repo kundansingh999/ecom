@@ -49,7 +49,14 @@ class ordercontroller extends Controller
         }
         cart::where('user_id',Auth::id())->delete();
         return back();
+    }
 
+    public function changeOrder(Request $request,$id){
 
+        order::where('id',$id)->update([
+
+            "status"=>$request->status,
+        ]);
+        return ["message"=>"Update Successful"];
     }
 }

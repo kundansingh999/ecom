@@ -103,6 +103,7 @@ Route::get('increment-product/{id}', [productcontroller::class,'IncrementProduct
 Route::get('decrement-product/{id}', [productcontroller::class,'decrementProduct']);
 
 Route::post('order-now', [ordercontroller::class,'ordernow']);
+Route::get('change-order-status/{id}', [ordercontroller::class,'changeOrder']);
 
 
 
