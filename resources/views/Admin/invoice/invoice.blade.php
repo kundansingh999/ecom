@@ -75,23 +75,42 @@
         <div class="header">
             <img src="logo.png" alt="Business Logo">
             <h1>Invoice</h1>
-            <p>Invoice #: INV-123456</p>
-            <p>Date: 2024-11-23</p>
+            <p>Invoice #: INV-{{$data->order_number}}</p>
+            @php
+            use Carbon\Carbon;
+            @endphp
+            <p>Date: {{$formattedDate = Carbon::parse($data->created_at)->format('d M Y')}}</p>
         </div>
 
         <div class="info">
             <div>
                 <h3>Billing Information</h3>
-                <p>John Doe</p>
-                <p>1234 Elm Street</p>
-                <p>Springfield, IL 62701</p>
-                <p>Email: johndoe@example.com</p>
-                <p>Phone: +1 (555) 123-4567</p>
+                <p>{{$data->name}}</p>
+                <p>Address</p>
+                <p>{{$data->address}}, {{$data->pincode}}</p>
+                @if($data->email)
+                <p>{{$data->email}}</p>
+                @endif
+                @php
+                $mobileNumber = $data->mobile_no;
+                $lastFourDigits = substr($mobileNumber, -4);
+                @endphp
+                <p>Phone:  ⨯⨯⨯⨯⨯⨯{{$lastFourDigits}}</p>
             </div>
             <div>
                 <h3>Shipping Information</h3>
-                <p>5678 Oak Avenue</p>
-                <p>Springfield, IL 62701</p>
+                <p>Name:-{{$data->first_name}}</p>
+                <p>Address:-{{$data->address}}, {{$data->pincode}}</p>
+
+                @if($data->address2)
+                <p>{{$data->address2}}, {{$data->pincode}}</p>
+                @endif
+
+                @php
+                $mobileNumber = $data->mobile_no;
+                $lastFourDigits = substr($mobileNumber, -4);
+                @endphp
+                <p>Phone:- ⨯⨯⨯⨯⨯⨯{{$lastFourDigits}}</p>
             </div>
         </div>
 
@@ -107,32 +126,12 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>T-Shirt</td>
-                    <td>L</td>
-                    <td>2</td>
-                    <td>$25.00</td>
-                    <td>$50.00</td>
+                    <td>{{$data->product_name}}</td>
+                    <td>{{$data->size}}</td>
+                    <td>{{$data->quantity}}</td>
+                    <td>{{$data->discount_price}}</td>
+                    <td>{{$data->total_amount}}</td>
                 </tr>
-                <tr>
-                    <td>Jeans</td>
-                    <td>32</td>
-                    <td>1</td>
-                    <td>$45.00</td>
-                    <td>$45.00</td>
-                </tr>
-                <tr>
-                    <td>Sneakers</td>
-                    <td>10</td>
-                    <td>1</td>
-                    <td>$75.00</td>
-                    <td>$75.00</td>
-                </tr>
-                <tr>
-                    <th colspan="4">Total price</th>
-                     <th>500</th>
-                </tr>
-
-
             </tbody>
         </table>
         <div class="footer">

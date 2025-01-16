@@ -123,6 +123,17 @@ class FrontendController extends Controller
          return view('Frontend.contact-us');
     }
 
+    public function searchProduct(Request $request)
+    {
+     $searchTerms = explode(' ', strtolower($request->search_product)); // Break search string into words
+     $product = product::where(function ($query) use ($searchTerms) {
+        foreach ($searchTerms as $term) 
+     {
+        $query->orWhere('product_summary', 'LIKE', '%' . $term . '%')
+          ->orWhere('product_name', 'LIKE', '%' . $term . '%');
+     }})->get();
+     return view('Frontend.search',['product'=>$product]);
+    }
 
 
 

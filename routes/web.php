@@ -106,6 +106,10 @@ Route::post('order-now', [ordercontroller::class,'ordernow']);
 Route::get('change-order-status/{id}', [ordercontroller::class,'changeOrder']);
 
 
+Route::get('search/products', [FrontendController::class,'searchProduct']);
+
+
+
 
 
 

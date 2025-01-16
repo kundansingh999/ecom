@@ -5,6 +5,7 @@ namespace App\Http\Controllers\AdminController;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Auth;
 use App\Models\product;
 use App\Models\category;
 use App\Models\order;
@@ -46,7 +47,14 @@ class AdminController extends Controller
     }
 
     public function invoice(){
-        return view('Admin.invoice.invoice');
+        $data = order::orderBy('orders.updated_at','desc')->
+        leftjoin('products','orders.product_id', '=', 'products.id')->
+        leftjoin('users', 'orders.user_id', '=', 'users.id')->
+        where('orders.user_id',Auth::id())->
+        select('products.*', 'users.*', 'orders.*')->first();
+
+        // dd($data);
+        return view('Admin.invoice.invoice',['data'=>$data]);
     }
 
     public function order(){
