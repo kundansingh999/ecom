@@ -53,7 +53,7 @@
                             </a>
                             @if(Auth::check())
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" style="font-weight: 700;">{{Auth::user()->name}}</a>
+                                <li><a href="{{url('user/account')}}" class="dropdown-item" style="font-weight: 700;">{{Auth::user()->name}}</a>
                                 </li>
                                 <li>
                                     <a class="dropdown-item" style="font-weight: 700;" href="{{url('test/logout')}}">Logout</a>

@@ -11,6 +11,7 @@ use App\Models\category;
 use App\Models\slider;
 use App\Models\user_ip;
 use App\Models\cart;
+use App\Models\order;
 use App\Models\address_master;
 
 
@@ -133,6 +134,18 @@ class FrontendController extends Controller
           ->orWhere('product_name', 'LIKE', '%' . $term . '%');
      }})->get();
      return view('Frontend.search',['product'=>$product]);
+    }
+
+
+
+    public function Account()
+    {
+     $data = order::orderBy('orders.updated_at','desc')->
+     leftjoin('products','orders.product_id', '=', 'products.id')->
+     where('orders.user_id',Auth::id())->
+     select('products.*', 'orders.*')->get();
+     
+     return view('Frontend.account',['data'=>$data]);
     }
 
 
