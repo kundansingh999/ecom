@@ -149,6 +149,20 @@ class FrontendController extends Controller
     }
 
 
+    public function BuyNow($id)
+    {
+     $cart = new cart();
+     $cart -> user_id = $user_id;
+     $cart -> product_id = $product_id;
+     $cart -> status = 1;
+     $cart -> quantity = 1;
+     $cart -> price=$product->discount_price;
+     $cart -> amount=$product->discount_price;
+     $cart -> order_id = mt_rand(1000000,9999999);
+     $cart -> save();
+    }
+
+
 
 
 

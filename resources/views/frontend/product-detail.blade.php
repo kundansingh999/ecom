@@ -33,13 +33,12 @@
                             <option value="3">3</option>
                         </select>
                     </div>
-
                 </div>
             </div>
 
             <p> {{$product->product_summary}}</p>
-            <a class="btn btn-dark" href="{{url('product-detail')}}"> Buy now</a>
-            <a class="btn btn-primary" href="{{url('product-detail')}}"> Add to cart</a>
+            <a class="btn btn-outline-secondary" href="{{url('buy-now'.'/'.$product->id)}}">Buy Now</a>    
+            <button class="btn btn-primary btn-sm cart" type="button" data-productid="{{ $product->id }}">Add to Cart</button>
 
         </div>
     </div>
