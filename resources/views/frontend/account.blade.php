@@ -32,6 +32,7 @@ use Illuminate\Support\Facades\Auth;
                                                 <th scope="col">Product Name </th>
                                                 <th scope="col">Product Image</th>
                                                 <th scope="col">Total Price</th>
+                                                <th scope="col">Status</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -46,6 +47,7 @@ use Illuminate\Support\Facades\Auth;
                                                         style="width:70px;" class="img-fluid category-image"
                                                         alt="Mobile"> </td>
                                                 <td>{{$data->total_amount}}</td>
+                                                <td>{{$data->status}}</td>
                                             </tr>
                                             @endforeach
                                         </tbody>

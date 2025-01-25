@@ -46,6 +46,9 @@ Route::get('contact-us', [FrontendController::class,'contact_us']);
 
 Route::get('/{slug}', [FrontendController::class,'product']);
 
+Route::get('order-message', [FrontendController::class,'ordermessage']);
+
+
 
 //  Route::get('login', [FrontendController::class,'login']);
 // Route::get('signup', [FrontendController::class,'signup']);

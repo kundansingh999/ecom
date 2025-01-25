@@ -13,6 +13,8 @@ use App\Models\user_ip;
 use App\Models\cart;
 use App\Models\order;
 use App\Models\address_master;
+use Illuminate\Support\Facades\Session;
+
 
 
 
@@ -78,6 +80,7 @@ class FrontendController extends Controller
      $data = cart::orderBy('carts.updated_at', 'desc')
      ->leftjoin('products', 'carts.product_id', '=', 'products.id')
      ->where('carts.user_id', Auth::id())
+     ->where('carts.buy_one', 2)
      ->select(
          'products.*',
          'carts.*',
@@ -151,15 +154,35 @@ class FrontendController extends Controller
 
     public function BuyNow($id)
     {
+     if(Auth::id()){
+     $product = product::where('id',$id)->first();
+     Session::put('product_id', $id);
      $cart = new cart();
-     $cart -> user_id = $user_id;
-     $cart -> product_id = $product_id;
+     $cart -> user_id = Auth::id();
+     $cart -> product_id = $id;
      $cart -> status = 1;
      $cart -> quantity = 1;
      $cart -> price=$product->discount_price;
      $cart -> amount=$product->discount_price;
      $cart -> order_id = mt_rand(1000000,9999999);
+     $cart -> buy_one = 1;
      $cart -> save();
+
+     $data = cart::orderBy('carts.updated_at', 'desc')
+     ->leftjoin('products', 'carts.product_id', '=', 'products.id')
+     ->where('carts.user_id', Auth::id())
+     ->where('carts.buy_one', 1)
+     ->select(
+         'products.product_name',
+         'products.id as product_id',
+         'carts.*',
+     )->limit(1)->get(); 
+      $address = address_master::where('user_id',Auth::id())->get();
+
+     return view('Frontend.check-out',['data'=>$data,'address'=>$address]);
+     }else{
+          return redirect()->to('login');
+     }
     }
 
 
@@ -176,6 +199,12 @@ class FrontendController extends Controller
 //     {
 //        return view('frontend.user-auth.signup');
 //     }
+
+public function ordermessage()
+{
+     return view ('frontend.order-message');
+     
+}
 
 
 }

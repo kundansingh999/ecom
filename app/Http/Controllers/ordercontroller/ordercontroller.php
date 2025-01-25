@@ -47,8 +47,8 @@ class ordercontroller extends Controller
             $order -> pincode = $request-> pin_code;
             $order->save();
         }
-        cart::where('user_id',Auth::id())->delete();
-        return back();
+         cart::where('user_id',Auth::id())->delete();
+        return redirect()->to('/');
     }
 
     public function changeOrder(Request $request,$id){
