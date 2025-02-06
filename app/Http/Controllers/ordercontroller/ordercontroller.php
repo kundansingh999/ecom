@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\order;
 use App\Models\cart;
+use App\Models\contact;
 use App\Models\address_master;
 use Illuminate\Support\Facades\Auth;
 
@@ -54,9 +55,37 @@ class ordercontroller extends Controller
     public function changeOrder(Request $request,$id){
 
         order::where('id',$id)->update([
-
             "status"=>$request->status,
         ]);
         return ["message"=>"Update Successful"];
     }
+
+    public function Ordercancel(Request $request)
+    {
+        // dd($request->all());
+        order::where('id',$request->order_id)->update([
+            "status"=>'cancel',
+        ]);
+         return back();
+
+    }
+
+
+    public function ContactUs(Request $request)
+    {
+                // dd($request->all());
+                $contact = new contact();
+                 $contact ->name = $request->name;
+                $contact-> subject = $request->subject;
+                $contact -> mobile_no = $request-> mobile;
+                $contact->email = $request->email;
+                $contact->message =$request->message;
+                $contact->save();
+                $request->session()->flash('success', 'Message sent successfully.');
+
+                return back();
+
+
+    }
+
 }

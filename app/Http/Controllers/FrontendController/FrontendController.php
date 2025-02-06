@@ -12,6 +12,7 @@ use App\Models\slider;
 use App\Models\user_ip;
 use App\Models\cart;
 use App\Models\order;
+use App\Models\search_master;
 use App\Models\address_master;
 use Illuminate\Support\Facades\Session;
 
@@ -129,6 +130,9 @@ class FrontendController extends Controller
 
     public function searchProduct(Request $request)
     {
+     search_master::create([
+          'search_name'=>$request->search_product
+     ]);
      $searchTerms = explode(' ', strtolower($request->search_product)); // Break search string into words
      $product = product::where(function ($query) use ($searchTerms) {
         foreach ($searchTerms as $term) 
@@ -147,8 +151,7 @@ class FrontendController extends Controller
      leftjoin('products','orders.product_id', '=', 'products.id')->
      where('orders.user_id',Auth::id())->
      select('products.*', 'orders.*')->get();
-     
-     return view('Frontend.account',['data'=>$data]);
+      return view('Frontend.account',['data'=>$data]);
     }
 
 
