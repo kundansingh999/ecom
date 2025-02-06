@@ -39,7 +39,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="{{url('/')}}">Home</a>
+                            <a class="nav-link active" aria-current="page" href="{{url('admin/')}}">Home</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{url('admin/product')}}">Product</a>

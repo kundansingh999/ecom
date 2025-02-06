@@ -59,7 +59,7 @@ Route::get('edit-product/{id}', [Admincontroller::class,'EditProduct']);
 
 
 Route::get('product', [AdminController::class,'product']);
-Route::get('admin/category', [AdminController::class,'category']);
+Route::get('category', [AdminController::class,'category']);
 Route::get('payment', [AdminController::class,'payment']);
 Route::get('order', [AdminController::class,'order'])->name('admin/order');
 Route::get('banner', [AdminController::class,'banner']);

@@ -48,9 +48,8 @@
 
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" style="font-weight:700;" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                Profile
-                            </a>
+                                data-bs-toggle="dropdown" aria-expanded="false">Profile</a>
+                                
                             @if(Auth::check())
                             <ul class="dropdown-menu">
                                 <li><a href="{{url('user/account')}}" class="dropdown-item" style="font-weight: 700;">{{Auth::user()->name}}</a>
