@@ -33,7 +33,7 @@
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
                             <a href="{{url('/')}}"></a>
-                            <img src="{{asset('assets\img\logo.jpg')}}" alt="logo">
+                            <img src="{{asset('assets\img\logo.png')}}" style="height:48px;" alt="logo">
 
                         </li>
 
@@ -90,13 +90,13 @@
 
                         <li class="nav-item">
                             <a class="nav-link " href="{{url('contact-us')}}" aria-disabled="true"
-                                style="font-weight: 700;">Customer Support</a>
+                                style="font-weight: 700;">Contact Us</a>
                         </li>
 
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a class="nav-link " href="{{url('about')}}" aria-disabled="true"
                                 style="font-weight: 700;">About Us</a>
-                        </li>
+                        </li> -->
 
                         <!-- <li class="nav-item">
                             <a class="nav-link " href="{{url('admin-login')}}" aria-disabled="true" style="font-weight: 700;">Admin login</a>
@@ -107,7 +107,7 @@
                         <button class="btn btn-outline-success" type="submit">Search</button>
 
                     </form>
-
+ 
                 </div>
             </div>
         </nav>

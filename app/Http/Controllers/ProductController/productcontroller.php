@@ -118,6 +118,13 @@ class productcontroller extends Controller
         // ]);
 
         $id = $request->id;
+                $imgProduct = null;
+        if ($request->hasFile("product-image")) {
+            $imgProductFile = $request->file("product-image");
+            $new_name_of_profile_photo3 = uniqid('', true) . "." . $imgProductFile->getClientOriginalExtension();
+            $imgProduct = $this->UploadImage('assets/product-image/', '', $imgProductFile, $new_name_of_profile_photo3);
+        }  
+
         product::where('id',$id)->update([
             'product_name'=>$request->product_name,
             'product_summary'=>$request->product_description,
@@ -126,9 +133,14 @@ class productcontroller extends Controller
             'product_price'=>$request->product_price,
             'brand'=>$request->brand,
             'stock'=>$request->product_quantity,
+            'image' =>  $imgProduct,
+            'size'=> json_encode($request->product_size),
+
             'status'=>$request->status,
         ]);
-        return redirect()->to('admin/index');
+        $request->session()->flash('success', 'product update successfully.');
+
+        return redirect()->to('admin/product');
     }
     
     public function removeproduct($id,Request $request){

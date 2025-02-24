@@ -100,19 +100,19 @@
             </div>
             <div class="col-md-1">
                 <div class="form-group">
-                    <input  class="form-check-input" value="m" name="product_size[]" type="checkbox">M
+                    <input class="form-check-input" value="m" name="product_size[]" type="checkbox">M
                 </div>
             </div>
 
             <div class="col-md-1">
                 <div class="form-group">
-                    <input  class="form-check-input" value="l" name="product_size[]" type="checkbox">L
+                    <input class="form-check-input" value="l" name="product_size[]" type="checkbox">L
                 </div>
             </div>
 
             <div class="col-md-1">
                 <div class="form-group">
-                    <input class="form-check-input" value="xl" name="product_size[]"  type="checkbox">XL
+                    <input class="form-check-input" value="xl" name="product_size[]" type="checkbox">XL
                 </div>
             </div>
 

@@ -15,11 +15,8 @@
                         <div class="card-body">
                             <h5 class="card-title">3 years old</h5>
                             <p class="card-text">kundan kumar</p>
-                            <p class="card-text">bhagwanpur muzaffarpur</p>
-                            <p class="card-text">842001</p>
-                            <p class="card-text">Bihar</p>
-                            <p class="card-text">7070113636</p>
-                        </div>
+                            <p>{{env('SHOP_ADDRESS')}}</p>
+                         </div>
                     </div>
                 </div>
                 <div class=" col-md-6">

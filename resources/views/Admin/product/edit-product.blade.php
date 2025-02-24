@@ -29,14 +29,15 @@
                 <div class="form-group">
                     <label for="product-name">Product Quantity</label>
                     <input type="number" class="form-control productquantity" id="product-quantity"
-                        name="product_quantity">
+                        name="product_quantity" value="{{$pros->stock}}">
                     <h6 class="productquantityError error"></h6>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="product-price">Product Image</label>
-                    <input type="file" class="form-control productimage" id="product-image" name="product-image">
+                    <input type="file" class="form-control productimage" id="product-image" name="product-image" >
+                    <img src="{{ asset('assets/product-image/' . $pros->image) }}" alt="" style="height: 60px; width: 60px;">
                     <h6 class="productimageError error"></h6>
                 </div>
             </div>
@@ -45,7 +46,7 @@
         <div class="col-mb-6">
             <label for="Product_Description" class="form-label">Product Description</label>
             <textarea class="form-control productdescription" id="ProductDescription" name="product_description"
-                rows="10"></textarea>
+                rows="10">{{$pros->product_summary}}</textarea>
             <h6 class="productdescriptionError error"></h6>
         </div>
 
@@ -86,7 +87,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="discount-price">Discount Price</label>
-                    <input type="number" class="form-control discountprice" id="discount-price" name="discount_price">
+                    <input type="number" class="form-control discountprice" id="discount-price" name="discount_price" value="{{$pros->discount_price}}">
                     <h6 class="discountpriceError error"></h6>
                 </div>
             </div>

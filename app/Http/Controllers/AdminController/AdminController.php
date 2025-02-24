@@ -143,9 +143,4 @@ public function banner_create(){
         return view('Admin.slider.create-slider',['category'=>$category]);
     }
 
-    public function  search_data(){
-        $data = search_master::where('status',1)->get();
-        return view('Admin.data-search',['data'=>$data]);
-    }
-
 }
