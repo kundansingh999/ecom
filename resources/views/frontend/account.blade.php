@@ -32,6 +32,9 @@ use Illuminate\Support\Facades\Auth;
                                                 <th scope="col">Product Name </th>
                                                 <th scope="col">Product Image</th>
                                                 <th scope="col">Total Price</th>
+                                                <th scope="col">Status</th>
+                                                <th scope="col">Order Action</th>
+
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -46,6 +49,22 @@ use Illuminate\Support\Facades\Auth;
                                                         style="width:70px;" class="img-fluid category-image"
                                                         alt="Mobile"> </td>
                                                 <td>{{$data->total_amount}}</td>
+                                                <td>{{$data->status}}</td>
+                                                @if($data->status=='cancel')
+                                                <td><p style="color:red;">Order Cancel</p></td>
+                                                @else
+                                                <td>
+                                                    <button type="button" data-id="{{$data->id}}"
+                                                        class="btn btn-primary ordercancel" data-bs-toggle="modal"
+                                                        data-bs-target="#exampleModal">
+                                                        Cancel Order
+                                                    </button>
+
+                                                </td>
+
+                                                @endif
+                                                
+
                                             </tr>
                                             @endforeach
                                         </tbody>
@@ -61,7 +80,35 @@ use Illuminate\Support\Facades\Auth;
 
 </div>
 
+<!-- Button trigger modal -->
 
-
-
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel"></h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="{{url('user/ordercancel')}} " method="post">
+                @csrf
+            <div class="modal-body text-center">
+                Are you sure to cancel order
+            </div>
+            <input type="text" class="id" name="order_id" hidden>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-danger">Yes</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+$(document).ready(function() {
+    $(document).on('click', '.ordercancel', function() {
+        $('.id').val($(this).data('id'));
+    });
+})
+</script>
 @include('frontend.bin.footer')

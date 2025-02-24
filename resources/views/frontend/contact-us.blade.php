@@ -1,5 +1,11 @@
 @include('frontend.bin.pageheader')
 <div class="container mt-4">
+@if(Session::has('success'))
+    <div class="alert alert-success">
+        {{ Session::get('success') }}
+    </div>
+    @endif
+
     <div class="card w-100 mb-3">
         <div class="card-body ">
             <div class="row cartproduct">
@@ -18,27 +24,34 @@
                     <h3></h3>
                     <div class="container mb-4">
                         <div class="row">
+                            <form action="{{url('contact/save')}}" method="post">
+                                @csrf
+                                <div class="col-12 ">
+                                    <label for="">full Name</label>
+                                    <input class="form-control" type="text" name="name" value="" id="">
 
-                            <div class="col-12 ">
-                                <label for="">full Name</label>
-                                <input class="form-control" type="text" value="" id="">
+                                    <label for="">Subject</label>
+                                    <input class="form-control" type="text" name="subject"  value="" id="">
 
-                                <label for="">Subject</label>
-                                <input class="form-control" type="text" value="" id="">
+                                    <label for="">Mobile_no</label>
+                                    <input class="form-control" type="number" name="mobile_no"  value="" id="">
 
-                                <label for="">Email</label>
-                                <input class="form-control" type="text" value="" id="">
 
-                                <label for="">Message</label>
-                                <input class="form-control" type="text" value="" id="">
+                                    <label for="">Email</label>
+                                    <input class="form-control" type="email" name="email"  value="" id="">
 
-                            </div>
+                                    <label for="">Message</label>
+                                    <input class="form-control" type="text"  name="message" value="" id="">
 
+                                </div>
+                                <br>
+                                <button type="submit" class="btn btn-lg btn-warning">Submit</button>
+
+                            </form>
 
                         </div>
                     </div>
 
-                    <button type="button" class="btn btn-lg btn-warning">Summit</button>
 
                 </div>
             </div>

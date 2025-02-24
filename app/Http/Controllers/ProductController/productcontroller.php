@@ -60,6 +60,7 @@ class productcontroller extends Controller
         $cart -> product_id = $product_id;
         $cart -> status = 1;
         $cart -> quantity = 1;
+        $cart -> buy_one = 2;
         $cart -> price=$product->discount_price;
         $cart -> amount=$product->discount_price;
         $cart -> order_id = mt_rand(1000000,9999999);
@@ -71,7 +72,7 @@ class productcontroller extends Controller
                 'price' => $product->discount_price * ($check_product->quantity + 1) 
             ]);
         }
-        $count = cart::where('user_id',$user_id)->count();
+        $count = cart::where('user_id',$user_id)->where('buy_one',2)->count();
         return ["message"=>"Add to cart successful","count"=>$count];
     }
 

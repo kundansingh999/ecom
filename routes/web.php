@@ -16,9 +16,9 @@ use App\Http\Controllers\orderController\ordercontroller;
 //     return view('welcome');
 // });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('user/account', [FrontendController::class,'Account']);
@@ -46,6 +46,9 @@ Route::get('contact-us', [FrontendController::class,'contact_us']);
 
 Route::get('/{slug}', [FrontendController::class,'product']);
 
+Route::get('order-message', [FrontendController::class,'ordermessage']);
+
+
 
 //  Route::get('login', [FrontendController::class,'login']);
 // Route::get('signup', [FrontendController::class,'signup']);
@@ -56,10 +59,11 @@ Route::prefix('admin')->group(function(){
 
 Route::get('edit-product/{id}', [Admincontroller::class,'EditProduct']);
 
+Route::get('dashboard', [AdminController::class,'dashboard']);
 
 
 Route::get('product', [AdminController::class,'product']);
-Route::get('admin/category', [AdminController::class,'category']);
+Route::get('category', [AdminController::class,'category']);
 Route::get('payment', [AdminController::class,'payment']);
 Route::get('order', [AdminController::class,'order'])->name('admin/order');
 Route::get('banner', [AdminController::class,'banner']);
@@ -68,6 +72,8 @@ Route::get('contact-page', [AdminController::class,'contact_page']);
 Route::get('admin-account-page', [AdminController::class,'admin_account_page']);
 Route::get('user', [AdminController::class,'user']);
 Route::get('invoice', [AdminController::class,'invoice']);
+Route::get('search-data', [AdminController::class,'search_data']);
+
 
 
 
@@ -110,6 +116,11 @@ Route::get('change-order-status/{id}', [ordercontroller::class,'changeOrder']);
 Route::get('search/products', [FrontendController::class,'searchProduct']);
 
 Route::get('buy-now/{id}', [FrontendController::class,'BuyNow']);
+
+Route::post('user/ordercancel', [ordercontroller::class,'Ordercancel']);
+
+Route::post('contact/save', [ordercontroller::class,'ContactUs']);
+
 
 
 

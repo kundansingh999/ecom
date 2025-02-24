@@ -76,7 +76,7 @@
                         <?php
                             use App\Models\cart;
                             use Illuminate\Support\Facades\Auth;
-                            $cart = cart::where('user_id', Auth::id())->count();
+                            $cart = cart::where('user_id', Auth::id())->where('buy_one',2)->count();
                         ?>
                         <li class="nav-item">
                             <?php if($cart == 0): ?>
