@@ -128,4 +128,6 @@ public function banner_create(){
         return view('Admin.slider.create-slider',['category'=>$category]);
     }
 
+    
+
 }

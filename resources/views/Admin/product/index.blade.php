@@ -1,5 +1,10 @@
 @include('Admin.bin.header')
 <div class="container">
+@if(Session::has('success'))
+    <div class="alert alert-success">
+        {{ Session::get('success') }}
+    </div>
+    @endif
     <div class="table-responsive mt-4">
         <table class="table table-bordered" style="width:100%">
             <a href="{{url('admin/product-create')}}" class="btn btn-info">Add Product</a>

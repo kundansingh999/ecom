@@ -48,6 +48,10 @@
                     <x-primary-button class="ms-3 btn btn-dark">
                         {{ __('Log in') }}
                     </x-primary-button> <br>
+                    <div class="mt-2">
+                        <a href="{{url('register')}}" style="color:black; text-decoration:none; margin-top:2px;">Sign
+                            Up</a>
+                    </div>
 
                     <div class="flex items-center justify-end mt-4">
                         @if (Route::has('password.request'))

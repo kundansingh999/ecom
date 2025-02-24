@@ -34,7 +34,7 @@
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item text-white">
                             <a href="{{url('/')}}"></a>
-                            <img src="{{asset('assets\img\logo.jpg')}}" alt="logo">
+                            <img src="{{asset('assets\img\logo.png')}}" alt="logo">
                         </li>
 
                         <li class="nav-item">

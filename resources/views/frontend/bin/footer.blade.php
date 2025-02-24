@@ -42,10 +42,8 @@
 
                 <div class="col-6  mb-3">
                     <h5 style="color:black;">Mail Us:</h5>
-                    <p>Shop_Smart Internet private Limited,<br>
-                        Buildings Smart city Muzaffarpur <br>
-                        Muzaffarpur,842001 <br>
-                        Bihar, India
+                    <p>
+                        {{env('SHOP_ADDRESS')}}
                     </p>
                 </div>
 
@@ -66,7 +64,7 @@
 
             <!-- Copyright -->
             <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-                © 2024 Copyright:
+                © 2025 Copyright:
                 <a class="text-white" href="https://shop_smart.com/">Shop_Smart.com</a>
             </div>
 
@@ -81,7 +79,7 @@
 
     <div class="text-center d-flex flex-column flex-sm-row justify-content-between">
         <ul class="list-unstyled d-flex">
-            <p class="text-center">&copy; 2024 - Site Built By K&K</p>
+            <p class="text-center">&copy; 2025- Site Built By K&K</p>
 
             <li class="ms-3"><a class="link-dark" href="#"><svg class="bi" width="24" height="24">
                         <use xlink:href="#twitter" />

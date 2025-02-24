@@ -35,7 +35,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item text-white">
-                            <img src="{{asset('assets\img\logo.jpg')}}" alt="">
+                            <img src="{{asset('assets\img\logo.png')}}" alt="">
                         </li>
 
                         <li class="nav-item">
