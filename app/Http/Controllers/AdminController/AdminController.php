@@ -11,6 +11,9 @@ use App\Models\category;
 use App\Models\order;
 use App\Models\admin;
 use App\Models\brand;
+use App\Models\User;
+use Carbon\Carbon;
+use App\Models\search_master;
 
 
 
@@ -41,6 +44,16 @@ class AdminController extends Controller
     public function payment(){
         return view('Admin.payment.index');
     }
+
+    public function dashboard(){
+        $product = product::where('status',1)->count();
+        $user = User::count();
+        $order = order::count();
+        $todayorder = order::whereDate('created_at',Carbon::today())->count();
+         return view('Admin.dashboard.dashboard',['product'=>$product,'user'=>$user,'order'=>$order,'todayorder'=>$todayorder]);
+
+    }
+
 
     public function user(){
         return view('Admin.user.index');
@@ -128,6 +141,11 @@ public function banner_create(){
     public function slider_create(){
         $category = category::where('status',1)->get();
         return view('Admin.slider.create-slider',['category'=>$category]);
+    }
+
+    public function  search_data(){
+        $data = search_master::where('status',1)->get();
+        return view('Admin.data-search',['data'=>$data]);
     }
 
 }
