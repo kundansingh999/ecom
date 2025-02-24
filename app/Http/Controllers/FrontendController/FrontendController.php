@@ -11,6 +11,8 @@ use App\Models\category;
 use App\Models\slider;
 use App\Models\user_ip;
 use App\Models\cart;
+use App\Models\order;
+use App\Models\address_master;
 
 
 
@@ -92,10 +94,24 @@ class FrontendController extends Controller
 
     public function check_out()
     {
-          if (!$cartItems) {
-          return redirect()->back()->with('sucess', 'Cart is empty!');
+     $cartitem = cart::where('user_id',Auth::id())->count();
+     if($cartitem == 0)
+     {
+          return redirect()->to('/');
+     }else{
+          $data = cart::orderBy('carts.updated_at', 'desc')
+          ->leftjoin('products', 'carts.product_id', '=', 'products.id')
+          ->where('carts.user_id', Auth::id())
+          ->select(
+              'products.product_name',
+              'products.id as product_id',
+              'carts.*',
+          )->get(); 
+
+          $address = address_master::where('user_id',Auth::id())->get();
+
+          return view('Frontend.check-out',['data'=>$data,'address'=>$address]);
           }
-         return view('Frontend.check-out');
     }
 
     public function about()
@@ -108,6 +124,43 @@ class FrontendController extends Controller
          return view('Frontend.contact-us');
     }
 
+    public function searchProduct(Request $request)
+    {
+     $searchTerms = explode(' ', strtolower($request->search_product)); // Break search string into words
+     $product = product::where(function ($query) use ($searchTerms) {
+        foreach ($searchTerms as $term) 
+     {
+        $query->orWhere('product_summary', 'LIKE', '%' . $term . '%')
+          ->orWhere('product_name', 'LIKE', '%' . $term . '%');
+     }})->get();
+     return view('Frontend.search',['product'=>$product]);
+    }
+
+
+
+    public function Account()
+    {
+     $data = order::orderBy('orders.updated_at','desc')->
+     leftjoin('products','orders.product_id', '=', 'products.id')->
+     where('orders.user_id',Auth::id())->
+     select('products.*', 'orders.*')->get();
+     
+     return view('Frontend.account',['data'=>$data]);
+    }
+
+
+    public function BuyNow($id)
+    {
+     $cart = new cart();
+     $cart -> user_id = $user_id;
+     $cart -> product_id = $product_id;
+     $cart -> status = 1;
+     $cart -> quantity = 1;
+     $cart -> price=$product->discount_price;
+     $cart -> amount=$product->discount_price;
+     $cart -> order_id = mt_rand(1000000,9999999);
+     $cart -> save();
+    }
 
 
 

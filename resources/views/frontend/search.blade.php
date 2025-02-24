@@ -3,6 +3,10 @@
 <div class="container category-section">
     <div class="row category-row">
        <div class="mt-4"> <h4>All Product</h4></div>
+       @if($product->isEmpty())
+       <div><h5>No recod found</h5></div>
+       @else
+
         @foreach($product as $prod)
         <div class="col-6 col-md-4 col-lg-3 mb-4">
             <div class="card">
@@ -17,6 +21,7 @@
             </div>
         </div>
         @endforeach
+        @endif
     </div>
 </div>
 

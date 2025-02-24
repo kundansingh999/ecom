@@ -139,6 +139,25 @@ $(document).ready(function () {
     //     }
     // }
 
+    $(document).on('change', '.orderstatus', function () {
+
+        var id = $(this).data('id');
+        var status = $(this).val();
+        var csrf = $("[name=_token]").val();
+            var base_url = window.location.origin;
+            var url = base_url + '/change-order-status' + '/' + id;
+            $.ajax({
+                type: 'get',
+                url: url,
+                data: {
+                    "status":status,
+                },
+                success: function (data){
+                    alert('Status Update successful');
+                }
+            });
+    });
+    
 
 });
 

@@ -20,7 +20,7 @@
                     <div class="col-8">
                         <input type="text" value="{{$data->id}}" hidden>
                         <input type="text" value="{{$data->product_id}}" hidden>
-                        <h2>{{$data->product_name}}</h2>
+                    <a class="" href="{{ url('product-detail/' . $data->slug . '/' . $data->product_id) }}" style="text-decoration:none;color:black;"><h4>{{$data->product_name}}</h4></a>
                         <h3 style="color:green;">special price</h3>
                         <h4 class="card-text">₹ <del>{{$data->product_price}}</del> ₹ {{$data->price}}</h4>
                         <h3>{{$data->product_title}}</h3>

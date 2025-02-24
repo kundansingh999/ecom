@@ -6,6 +6,7 @@ use App\Http\Controllers\FrontendController\FrontendController;
 use App\Http\Controllers\AdminController\AdminController;
 use App\Http\Controllers\CategoryController\categorycontroller;
 use App\Http\Controllers\ProductController\productcontroller;
+use App\Http\Controllers\orderController\ordercontroller;
 
 
 
@@ -20,6 +21,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
+    Route::get('user/account', [FrontendController::class,'Account']);
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
@@ -100,6 +102,16 @@ Route::get('test/logout', [categorycontroller::class,'test_logout']);
 
 Route::get('increment-product/{id}', [productcontroller::class,'IncrementProduct']);
 Route::get('decrement-product/{id}', [productcontroller::class,'decrementProduct']);
+
+Route::post('order-now', [ordercontroller::class,'ordernow']);
+Route::get('change-order-status/{id}', [ordercontroller::class,'changeOrder']);
+
+
+Route::get('search/products', [FrontendController::class,'searchProduct']);
+
+Route::get('buy-now/{id}', [FrontendController::class,'BuyNow']);
+
+
 
 
 
