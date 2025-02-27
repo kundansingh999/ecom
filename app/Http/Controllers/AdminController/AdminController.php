@@ -92,7 +92,9 @@ class AdminController extends Controller
     }
 
     public function brand(){
-        return view('Admin.brand.index');
+        $data =brand::where('status',1)->get();
+        // dd($data);
+        return view('Admin.brand.index',['data'=>$data]);
     }
 
     public function  product_create(){
