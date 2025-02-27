@@ -6,8 +6,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\product;
 use App\Models\cart;
+use App\Models\product_feedback;
 use Illuminate\Support\Str;
 use App\Traits\UploadImage;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
 
@@ -148,4 +150,30 @@ class productcontroller extends Controller
         $request->session()->flash('success', 'Remove successfully.');
         return back();
     }
+
+    public function userfeedback(Request $request)
+    {
+        $imgProduct = null;
+        if ($request->hasFile("feedback-image")) {
+            $imgProductFile = $request->file("feedback-image");
+            $new_name_of_profile_photo3 = uniqid('', true) . "." . $imgProductFile->getClientOriginalExtension();
+            $imgProduct = $this->UploadImage('assets/feedback-image/', '', $imgProductFile, $new_name_of_profile_photo3);
+        }  
+    
+    $feedback= new product_feedback();
+    $feedback ->product_id= $request->product_id;
+    $feedback ->user_id=Auth::id();
+    $feedback ->feedback =$request->feedback;
+    $feedback ->image=$imgProduct;
+    $feedback->save();
+    $request->session()->flash('success', 'thank you for feedback');
+    
+    return back();
+    
+    
+    
+    }
+    
+
+
 }
