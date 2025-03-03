@@ -49,13 +49,19 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" style="font-weight:700;" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">Profile</a>
-                                
+
                             @if(Auth::check())
                             <ul class="dropdown-menu">
-                                <li><a href="{{url('user/account')}}" class="dropdown-item" style="font-weight: 700;">{{Auth::user()->name}}</a>
+                                <li><a href="{{url('user/account')}}" class="dropdown-item"
+                                        style="font-weight: 700;">Account</a>
                                 </li>
+                                <li><a href="{{url('user/orderhistory')}}" class="dropdown-item"
+                                        style="font-weight: 700;">Order History</a>
+                                </li>
+
                                 <li>
-                                    <a class="dropdown-item" style="font-weight: 700;" href="{{url('test/logout')}}">Logout</a>
+                                    <a class="dropdown-item" style="font-weight: 700;"
+                                        href="{{url('test/logout')}}">Logout</a>
                                     <hr class="dropdown-divider">
                                 </li>
                             </ul>
@@ -83,8 +89,8 @@
                                 Cart </a>
                             <?php else: ?>
                             <a class="nav-link" href="{{ url('cart') }}" aria-disabled="true" style="font-weight:700;">
-                                Cart <sup><span
-                                        style="vertical-align:super;font-size:smaller;color:red;" class="count">{{ $cart }}</span></sup></a>
+                                Cart <sup><span style="vertical-align:super;font-size:smaller;color:red;"
+                                        class="count">{{ $cart }}</span></sup></a>
                             <?php endif; ?>
                         </li>
 
@@ -103,11 +109,12 @@
                         </li> -->
                     </ul>
                     <form class="d-flex" role="search" action="{{url('search/products')}}">
-                        <input class="form-control me-2" name="search_product" type="search" placeholder="Search" aria-label="Search">
+                        <input class="form-control me-2" name="search_product" type="search" placeholder="Search"
+                            aria-label="Search">
                         <button class="btn btn-outline-success" type="submit">Search</button>
 
                     </form>
- 
+
                 </div>
             </div>
         </nav>

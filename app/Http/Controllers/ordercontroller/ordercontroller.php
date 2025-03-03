@@ -89,6 +89,13 @@ class ordercontroller extends Controller
 
     }
 
-
+public function OrderHistory()
+{
+    $data = order::orderBy('orders.updated_at','desc')->
+    leftjoin('products','orders.product_id', '=', 'products.id')->
+    where('orders.user_id',Auth::id())->
+    select('products.*', 'orders.*')->get();
+     return view('Frontend.order-history',['data'=>$data]);
+}
 
 }

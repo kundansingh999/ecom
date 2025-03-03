@@ -124,6 +124,9 @@ Route::post('contact/save', [ordercontroller::class,'ContactUs']);
 
 Route::post('user/feedback', [productcontroller::class,'userfeedback']);
 
+Route::get('user/orderhistory', [ordercontroller::class,'OrderHistory']);
+
+
 
 
 

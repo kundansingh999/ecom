@@ -20,7 +20,7 @@
                     <!-- Email Address -->
                     <div shree ram>
                         <x-input-label for="email" :value="__('Email')" />
-                        <x-text-input id="email" class="block form-control" type="email" name="email"
+                        <x-text-input id="email" class="block form-control" type="text" name="email"
                             :value="old('email')" required autofocus autocomplete="username" />
                         <x-input-error :messages="$errors->get('email')" class="mt-2" />
                     </div>
