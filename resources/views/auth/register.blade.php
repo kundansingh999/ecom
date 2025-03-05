@@ -1,4 +1,9 @@
  @include('frontend.bin.pageheader')
+ @if(Session::has('success'))
+    <div class="alert alert-success">
+        {{ Session::get('success') }}
+    </div>
+    @endif
     <div class="container text-center p-4">
         <h1 style="color:black;"> Signup</h1>
         <div class="row bg-info p-4">
@@ -28,7 +33,7 @@
 
                         <div class="mt-4">
                             <x-input-label for="Mobileno" :value="__('Mobile No')" />
-                            <x-text-input id="mobileno" class="form-control" type="number" name="mobileno"
+                            <x-text-input id="mobileno" class="form-control" type="number" name="mobile_no"
                                 :value="old('mobileno')" required autocomplete="username" />
                             <x-input-error :messages="$errors->get('mobileno')" class="mt-2" />
                         </div>

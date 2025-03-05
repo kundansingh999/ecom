@@ -12,6 +12,7 @@ use App\Models\slider;
 use App\Models\user_ip;
 use App\Models\cart;
 use App\Models\order;
+use App\Models\product_feedback;
 use App\Models\search_master;
 use App\Models\address_master;
 use Illuminate\Support\Facades\Session;
@@ -68,9 +69,12 @@ class FrontendController extends Controller
     public function product_detail($slug,$id)
     {
      $product = product::where('slug',$slug)->where('id',$id)->first();
-     $simlar = product::where('status',1)->whereNot('id',$id)->where('category_id',$product->category_id)->limit(4)->orderby('created_at','desc')->get(); 
-     if($product){
-          return view('Frontend.product-detail',['product'=>$product,'simlar'=>$simlar]);
+     $simlar = product::where('status',1)->whereNot('id',$id)->where('category_id',$product->category_id)->limit(4)->orderby('created_at','desc')->get();
+     
+     $feedback = product_feedback::where('product_id',$id)->leftjoin('users','product_feedbacks.user_id','=', 'users.id')->
+     select('product_feedbacks.*','users.name')->get();
+      if($product){
+          return view('Frontend.product-detail',['product'=>$product,'simlar'=>$simlar,'feedback'=>$feedback]);
      }else{
           return back();
      }

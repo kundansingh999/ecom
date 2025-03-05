@@ -37,31 +37,53 @@
             </div>
 
             <p> {{$product->product_summary}}</p>
-            <a class="btn btn-outline-secondary" href="{{url('buy-now'.'/'.$product->id)}}">Buy Now</a>    
-            <button class="btn btn-primary btn-sm cart" type="button" data-productid="{{ $product->id }}">Add to Cart</button>
+            <a class="btn btn-outline-secondary" href="{{url('buy-now'.'/'.$product->id)}}">Buy Now</a>
+            <button class="btn btn-primary btn-sm cart" type="button" data-productid="{{ $product->id }}">Add to
+                Cart</button>
+            <hr><br>
+            <h4 class="mb-4">Reviews</h4>
+            <div class="row category-row">
+                @foreach($feedback as $pro)
+                <div class="col-12 col-md-12 col-lg-12 mb-12">
+                    <div class="cart">
+                        <h6 class="card-text text"> Name : {{ $pro->name}} </h6>
+                        <p class="card-text text"> Feedback : {{ $pro->feedback}}</p>
+                        <img src="{{ asset('assets/feedback-image/' . $pro->image) }}" style="height:80px; width:80px;"
+                            class="card-img-top home-image">
+                        <div class="card-body text-center">
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+            </div>
+
 
         </div>
     </div>
 </div><br>
 
-    <div class="container category-section">
+<div class="container category-section">
     <h4 class="mb-4">Similar Products</h4>
 
     <div class="row category-row">
         @foreach($simlar as $prod)
         <div class="col-6 col-md-4 col-lg-3 mb-4">
             <div class="card">
-                <img src="{{ asset('assets/product-image/' . $prod->image) }}" class="card-img-top home-image" alt="{{ $prod->product_name }}">
+                <img src="{{ asset('assets/product-image/' . $prod->image) }}" class="card-img-top home-image"
+                    alt="{{ $prod->product_name }}">
                 <div class="card-body text-center">
                     <h5 class="card-title text">{{ $prod->product_name }}</h5>
                     <p class="card-text text">{{ $prod->product_title }}</p>
-                    <h4 class="card-text text">₹ <del>{{ $prod->product_price }}</del> ₹ {{ $prod->discount_price }}</h4>
-                    <a class="btn btn-primary btn-sm" href="{{ url('product-detail/' . $prod->slug . '/' . $prod->id) }}">Details</a>
+                    <h4 class="card-text text">₹ <del>{{ $prod->product_price }}</del> ₹ {{ $prod->discount_price }}
+                    </h4>
+                    <a class="btn btn-primary btn-sm"
+                        href="{{ url('product-detail/' . $prod->slug . '/' . $prod->id) }}">Details</a>
                     <button class="btn btn-primary btn-sm cart" data-productid="{{ $prod->id }}">Add to Cart</button>
                 </div>
             </div>
         </div>
         @endforeach
     </div>
+
 </div>
 @include('frontend.bin.footer')

@@ -29,15 +29,22 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        $request->validate([
+         $request->validate([
             'name' => ['required', 'string', 'max:255'],
+            'mobile_no' => ['required'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
+        $checkuser = User::where('email',$request->email)->first();
+        $checkmobile = User::where('mobile_no',$request->mobile_no)->first();
+        // dd($checkuser);
+        if(!$checkuser && !$checkmobile){
+
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
+            'mobile_no'=>$request->mobile_no,
             'password' => Hash::make($request->password),
         ]);
 
@@ -46,5 +53,13 @@ class RegisteredUserController extends Controller
         Auth::login($user);
 
         return redirect(route('/', absolute: false));
+
+        }else{
+         $request->session()->flash('success', 'user already exist.');
+        return back();
+
     }
+
+     }
+
 }
