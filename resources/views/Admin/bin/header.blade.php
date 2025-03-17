@@ -23,7 +23,7 @@
 
     <!------------------------------------------------------Nav--------------------------------------------->
 
-    <div class="">
+     <div class="">
         <nav class="navbar navbar-expand-lg text-white bg-info">
             <div class="container-fluid">
                 <!-- <a class="navbar-brand" href="#">Shop_smart</a> -->

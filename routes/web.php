@@ -25,6 +25,34 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+
+    Route::prefix('admin')->group(function(){
+        Route::get('edit-product/{id}', [Admincontroller::class,'EditProduct']);
+        Route::get('dashboard', [AdminController::class,'dashboard']);
+        Route::get('product', [AdminController::class,'product']);
+        Route::get('category', [AdminController::class,'category']);
+        Route::get('payment', [AdminController::class,'payment']);
+        Route::get('order', [AdminController::class,'order'])->name('admin/order');
+        Route::get('banner', [AdminController::class,'banner']);
+        Route::get('brand', [AdminController::class,'brand']);
+        Route::get('contact-page', [AdminController::class,'contact_page']);
+        Route::get('admin-account-page', [AdminController::class,'admin_account_page']);
+        Route::get('user', [AdminController::class,'user']);
+        Route::get('invoice', [AdminController::class,'invoice']);
+        Route::get('search-data', [AdminController::class,'search_data']);
+        Route::get('product-create', [AdminController::class,'product_create']);
+        Route::get('category-create', [AdminController::class,'category_create']);
+        Route::get('brand-create', [AdminController::class,'brand_create']);
+        Route::get('contact-create', [AdminController::class,'contactcreate']);
+        Route::get('banner-create', [AdminController::class,'banner_create']);
+        Route::get('order-create', [AdminController::class,'order_create']);
+        Route::get('payment-create', [AdminController::class,'payment_create']);
+        Route::get('user-create', [AdminController::class,'user_create']);
+        Route::get('admin-create', [AdminController::class,'admin_create']);
+        Route::get('slider-create', [AdminController::class,'slider_create']);
+        });
+
 });
 
 require __DIR__.'/auth.php';
@@ -55,42 +83,6 @@ Route::get('order-message', [FrontendController::class,'ordermessage']);
 
 
 
-Route::prefix('admin')->group(function(){
-
-Route::get('edit-product/{id}', [Admincontroller::class,'EditProduct']);
-
-Route::get('dashboard', [AdminController::class,'dashboard']);
-
-
-Route::get('product', [AdminController::class,'product']);
-Route::get('category', [AdminController::class,'category']);
-Route::get('payment', [AdminController::class,'payment']);
-Route::get('order', [AdminController::class,'order'])->name('admin/order');
-Route::get('banner', [AdminController::class,'banner']);
-Route::get('brand', [AdminController::class,'brand']);
-Route::get('contact-page', [AdminController::class,'contact_page']);
-Route::get('admin-account-page', [AdminController::class,'admin_account_page']);
-Route::get('user', [AdminController::class,'user']);
-Route::get('invoice', [AdminController::class,'invoice']);
-Route::get('search-data', [AdminController::class,'search_data']);
-
-
-
-
-Route::get('product-create', [AdminController::class,'product_create']);
-Route::get('category-create', [AdminController::class,'category_create']);
-Route::get('brand-create', [AdminController::class,'brand_create']);
-
-Route::get('contact-create', [AdminController::class,'contactcreate']);
-Route::get('banner-create', [AdminController::class,'banner_create']);
-
-Route::get('order-create', [AdminController::class,'order_create']);
-Route::get('payment-create', [AdminController::class,'payment_create']);
-Route::get('user-create', [AdminController::class,'user_create']);
-Route::get('admin-create', [AdminController::class,'admin_create']);
-Route::get('slider-create', [AdminController::class,'slider_create']);
-
-});
 
 Route::post('add-category', [categorycontroller::class,'AddCategory']);
 Route::post('add-slider', [categorycontroller::class,'Addslider']);
@@ -125,32 +117,3 @@ Route::post('contact/save', [ordercontroller::class,'ContactUs']);
 Route::post('user/feedback', [productcontroller::class,'userfeedback']);
 
 Route::get('user/orderhistory', [ordercontroller::class,'OrderHistory']);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

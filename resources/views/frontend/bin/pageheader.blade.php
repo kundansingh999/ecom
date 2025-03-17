@@ -4,7 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>home</title>
+    @if(!empty($product->product_name))
+    <title>{{$product->product_name}}</title>
+    <meta name="description" content="{{$product->product_summary}}">
+    @else
+    <title>Home</title>
+
+    @endif
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
@@ -18,11 +24,11 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
-       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
-        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 
 <body>
@@ -52,35 +58,52 @@
                             <a class="nav-link" href="{{url('product')}}">Product</a>
                         </li>
 
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a class="nav-link" href="{{url('product-detail')}}"
                                 style="font-weight:700;">Product-detail</a>
-                        </li>
+                        </li> -->
 
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a class="nav-link" href="{{url('check-out')}}" style="font-weight:700;">check-out</a>
-                        </li>
+                        </li> -->
 
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                                aria-expanded="false">
-                                Profile
-                            </a>
+                            <a class="nav-link dropdown-toggle" href="#" style="font-weight:700;" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">Profile</a>
+
+                            @if(Auth::check())
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Login</a></li>
-                                <li><a class="dropdown-item" href="#">Sign up</a></li>
+                                <li><a href="{{url('user/account')}}" class="dropdown-item"
+                                        style="font-weight: 700;">Account</a>
+                                </li>
+                                <li><a href="{{url('user/orderhistory')}}" class="dropdown-item"
+                                        style="font-weight: 700;">Order History</a>
+                                </li>
+
+                                <li>
+                                    <a class="dropdown-item" style="font-weight: 700;"
+                                        href="{{url('test/logout')}}">Logout</a>
+                                    <hr class="dropdown-divider">
+                                </li>
+                            </ul>
+                            @else
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="{{url('login')}}" style="font-weight: 700;">Login</a>
+                                </li>
+                                <li><a class="dropdown-item" href="{{url('register')}}" style="font- weight: 700;">Sign
+                                        up</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
                             </ul>
+                            @endif
                         </li>
-
                         <li class="nav-item">
                             <a class="nav-link " href="{{url('cart')}}" aria-disabled="true">Cart</a>
                         </li>
-                        
+
                         <li class="nav-item">
-                            <a class="nav-link " href="{{url('contact-us')}}" aria-disabled="true">Customer Support</a>
+                            <a class="nav-link " href="{{url('contact-us')}}" aria-disabled="true">Contact Us</a>
                         </li>
 
                         <li class="nav-item">
