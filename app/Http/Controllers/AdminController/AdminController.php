@@ -56,7 +56,8 @@ class AdminController extends Controller
 
 
     public function user(){
-        return view('Admin.user.index');
+        $user = User::all();
+        return view('Admin.user.index',['user'=>$user]);
     }
 
     public function invoice(){

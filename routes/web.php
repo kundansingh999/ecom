@@ -118,3 +118,11 @@ Route::post('contact/save', [ordercontroller::class,'ContactUs']);
 Route::post('user/feedback', [productcontroller::class,'userfeedback']);
 
 Route::get('user/orderhistory', [ordercontroller::class,'OrderHistory']);
+
+
+Route::get('admin/convert-user/{id}', [productcontroller::class,'convert_user']);
+Route::get('admin/convert-admin/{id}', [productcontroller::class,'convert_admin']);
+
+Route::get('admin/block-user/{id}', [productcontroller::class,'block_user']);
+Route::get('admin/unblock-user/{id}', [productcontroller::class,'unblock_user']);
+

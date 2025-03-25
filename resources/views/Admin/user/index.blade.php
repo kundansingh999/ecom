@@ -1,82 +1,69 @@
 @include('Admin.bin.header')
 <div class="container">
-<div class="table-responsive mt-4">
-    <h4>User-page</h4>
-    <table class="table table-bordered" style="width:100%">
-        <thead>
-            <tr>
-                <th scope="col">S.I</th>
-                <th scope="col">Product Name</th>
-                <th scope="col">Product Title</th>
-                <th scope="col">Product Image</th>
-                <th scope="col">Status</th>
-                <th scope="col">Quantity</th>
-                <th scope="col">Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>Sparky Shirt</td>
-                <td>Shirt</td>
-                <td> 
-                    <img src="{{ asset('assets/img/mobile.webp') }}" class="img-fluid category-image" alt="Mobile">
-                </td>
-                <td>Active</td>
-                <td>500</td>
-                <td>
-                    <button type="button" class="btn btn-primary btn-sm">Edit</button>
-                    <button type="button" class="btn btn-secondary btn-sm">Delete</button>
-                    <button type="button" class="btn btn-success btn-sm">Status</button>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>Dynamic T-Shirt</td>
-                <td>T-Shirt</td>
-                <td> 
-                    <img src="{{ asset('assets/img/mobile.webp') }}" class="img-fluid category-image" alt="Mobile">
-                </td>
-                <td>Inactive</td>
-                <td>300</td>
-                <td>
-                    <button type="button" class="btn btn-primary btn-sm">Edit</button>
-                    <button type="button" class="btn btn-secondary btn-sm">Delete</button>
-                    <button type="button" class="btn btn-success btn-sm">Status</button>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">1</th>
-                <td>Sparky Shirt</td>
-                <td>Shirt</td>
-                <td> 
-                    <img src="{{ asset('assets/img/mobile.webp') }}" class="img-fluid category-image" alt="Mobile">
-                </td>
-                <td>Active</td>
-                <td>500</td>
-                <td>
-                    <button type="button" class="btn btn-primary btn-sm">Edit</button>
-                    <button type="button" class="btn btn-secondary btn-sm">Delete</button>
-                    <button type="button" class="btn btn-success btn-sm">Status</button>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">1</th>
-                <td>Sparky Shirt</td>
-                <td>Shirt</td>
-                <td> 
-                    <img src="{{ asset('assets/img/mobile.webp') }}" class="img-fluid category-image" alt="Mobile">
-                </td>
-                <td>Active</td>
-                <td>500</td>
-                <td>
-                    <button type="button" class="btn btn-primary btn-sm">Edit</button>
-                    <button type="button" class="btn btn-secondary btn-sm">Delete</button>
-                    <button type="button" class="btn btn-success btn-sm">Status</button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</div>
+    <div class="table-responsive mt-4">
+        @if(Session::has('success'))
+        <div class="alert alert-success">
+            {{ Session::get('success') }}
+        </div>
+        @endif
+
+        <h4>User-page</h4>
+        <table class="table table-bordered" style="width:100%">
+            <thead>
+                <tr>
+                    <th scope="col">S.I</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Mobile no</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">User type</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @php
+                $si = 1;
+
+                @endphp
+
+                @foreach($user as $user)
+                <tr>
+                    <th scope="row">{{$si++}}</th>
+                    <td>{{$user->name}}</td>
+                    <td>{{$user->email}}</td>
+                    <td>{{$user->mobile_no}}</td>
+
+                    <td>Active</td>
+                    @if($user->admin == 1)
+                    <td>Admin</td>
+                    @else
+                    <td>User</td>
+                    @endif
+
+                    @if(in_array($user->id, [1, 2])) <td> </td>
+                    @else
+                    <td>
+                        @if($user->admin == 1)
+                        <a href="{{url('admin/convert-user/'.$user->id) }}" class="btn btn-success btn-sm">User</a>
+                        @else
+                        <a href="{{url('admin/convert-admin/'.$user->id)}}" class="btn btn-success btn-sm">Admin</a>
+
+                        @endif
+
+                        @if($user->status == 1)
+                        <a href="{{url('admin/block-user/'.$user->id) }}" class="btn btn-danger btn-sm">Blocked</a>
+                        @else
+                        <a href="{{url('admin/unblock-user/'.$user->id)}}" class="btn btn-success btn-sm">Unblocked</a>
+                        @endif
+                    </td>
+                    @endif
+                </tr>
+                @endforeach
+
+
+
+            </tbody>
+        </table>
+    </div>
 </div>
 @include('Admin.bin.footer')

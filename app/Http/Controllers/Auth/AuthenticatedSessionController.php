@@ -8,6 +8,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
+use App\Models\User;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -24,16 +25,24 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request): RedirectResponse
     {
-
-        $request->authenticate();
-        $request->session()->regenerate();
-        $user = Auth::user();
-        if($user->admin===0){
-            return redirect()->intended(route('/', absolute: false));
+        // dd($request->all());
+        $checkuser = User::where('email',$request->email)->orwhere('mobile_no',$request->email)->first();
+        if($checkuser->status === 1){
+            $request->authenticate();
+            $request->session()->regenerate();
+            $user = Auth::user();
+            if($user->admin===0){
+                return redirect()->intended(route('/', absolute: false));
+            }else{
+                return redirect()->intended(route('admin/order', absolute: false));
+            }
+            
         }else{
-            return redirect()->intended(route('admin/order', absolute: false));
+            $request->session()->flash('success', 'Your Account is blocked please contact Admin.');
+            return back();
         }
-        // return redirect()->intended(route('dashboard', absolute: false));
+        
+         // return redirect()->intended(route('dashboard', absolute: false));
     }
 
     /**

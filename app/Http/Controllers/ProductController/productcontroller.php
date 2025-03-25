@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\product;
 use App\Models\cart;
+use App\Models\User;
 use App\Models\product_feedback;
 use Illuminate\Support\Str;
 use App\Traits\UploadImage;
@@ -170,10 +171,51 @@ class productcontroller extends Controller
     
     return back();
     
-    
-    
     }
     
+
+    public function convert_user( Request $request ,$id)
+    {
+        User::where('id', $id)->update([
+            'admin' => 0,
+        ]);
+        $request->session()->flash('success', 'Convert user successfully.');
+        return back();
+
+    }
+
+    public function convert_admin( Request $request ,$id)
+    {
+        User::where('id', $id)->update([
+            'admin' => 1,
+        ]);
+        $request->session()->flash('success', 'Convert admin successfully.');
+        return back();
+
+    }
+
+    public function block_user( Request $request ,$id)
+    {
+        User::where('id', $id)->update([
+            'status' => 2,
+        ]);
+        $request->session()->flash('success', 'Block successfully.');
+        return back();
+
+    }
+
+    public function unblock_user( Request $request ,$id)
+    {
+        User::where('id', $id)->update([
+            'status' => 1,
+        ]);
+        $request->session()->flash('success', 'Unblock successfully.');
+        return back();
+
+    }
+
+
+
 
 
 }
