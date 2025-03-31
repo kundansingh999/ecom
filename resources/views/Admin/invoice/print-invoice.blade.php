@@ -70,12 +70,12 @@
 </head>
 
 <body>
-
-    <div class="container">
+<button class="print invoice" onclick="printInvoice()">Print invoice</button>
+    <div class="container printpage">
         <div class="header">
             <img src="logo.png" alt="Business Logo">
             <h1>Invoice</h1>
-            <p>Invoice #: INV-{{$data->order_number}}</p>
+            <p>Invoice #:{{$data->invoice_no}}</p>
             @php
             use Carbon\Carbon;
             @endphp
@@ -85,32 +85,16 @@
         <div class="info">
             <div>
                 <h3>Billing Information</h3>
-                <p>{{$data->name}}</p>
-                <p>Address</p>
-                <p>{{$data->address}}, {{$data->pincode}}</p>
-                @if($data->email)
-                <p>{{$data->email}}</p>
-                @endif
-                @php
-                $mobileNumber = $data->mobile_no;
-                $lastFourDigits = substr($mobileNumber, -4);
-                @endphp
-                <p>Phone:  ⨯⨯⨯⨯⨯⨯{{$lastFourDigits}}</p>
+                <p>{{$data->customer_name}}</p>
+                 <p>Phone:  {{$data->customer_mobile}}</p>
             </div>
             <div>
-                <h3>Shipping Information</h3>
-                <p>Name:-{{$data->first_name}}</p>
-                <p>Address:-{{$data->address}}, {{$data->pincode}}</p>
+                <h3>Shop Information</h3>
+                <p>Name:- E Shop</p>
+                <p>Address:-bhagwanpur,muzaffarpur,842002</p>
 
-                @if($data->address2)
-                <p>{{$data->address2}}, {{$data->pincode}}</p>
-                @endif
-
-                @php
-                $mobileNumber = $data->mobile_no;
-                $lastFourDigits = substr($mobileNumber, -4);
-                @endphp
-                <p>Phone:- ⨯⨯⨯⨯⨯⨯{{$lastFourDigits}}</p>
+ 
+                 <p>Phone:- 9525249426</p>
             </div>
         </div>
 
@@ -120,17 +104,22 @@
                     <th>Product Name</th>
                     <th>Size</th>
                     <th>Quantity</th>
-                    <th>Unit Price</th>
-                    <th>Total</th>
+                     <th>Total</th>
+                    <th>discount</th>
+                    <th>payment method</th>
+
+
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <td>{{$data->product_name}}</td>
-                    <td>{{$data->size}}</td>
-                    <td>{{$data->quantity}}</td>
+                    <td>{{$data->product_size}}</td>
+                    <td>{{$data->product_quantity}}</td>
+                    <td>{{$data->product_price}}</td>
                     <td>{{$data->discount_price}}</td>
-                    <td>{{$data->total_amount}}</td>
+                    <td>{{$data->payment_method}}</td>
+
                 </tr>
             </tbody>
         </table>
@@ -138,5 +127,16 @@
             Thank you for shoping clothes
         </div>
 </body>
+<script>
+        function printInvoice() {
+            var printContents = document.querySelector('.printpage').innerHTML;
+            var originalContents = document.body.innerHTML;
+
+            document.body.innerHTML = printContents;
+            window.print();
+            document.body.innerHTML = originalContents;
+            location.reload(); // Page ko reload kare taki original state wapas aaye
+        }
+    </script>
 
 </html>

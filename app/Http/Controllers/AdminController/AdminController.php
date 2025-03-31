@@ -10,6 +10,7 @@ use App\Models\product;
 use App\Models\category;
 use App\Models\order;
 use App\Models\admin;
+use App\Models\invoice;
 use App\Models\brand;
 use App\Models\User;
 use Carbon\Carbon;
@@ -70,6 +71,28 @@ class AdminController extends Controller
         // dd($data);
         return view('Admin.invoice.invoice',['data'=>$data]);
     }
+
+    public function invoice_create(){
+        $product =product::where('status',1)->get();
+         return view('Admin.invoice.create',['product'=>$product]);
+    }
+
+    public function direct_invoice(){
+        $invoice =invoice::where('status',1)->get();
+         return view('Admin.invoice.direct-invoice',['invoice'=>$invoice]);
+    }
+
+    public function print_invoice($invoice_no){
+        $invoice =invoice::where('status',1)->where('invoice_no',$invoice_no)->first();
+        if($invoice){
+            return view('Admin.invoice.print-invoice',['data'=>$invoice]);
+
+        }else{
+            return back();
+        }
+    }
+
+
 
     public function order(){
         $data = order::orderBy('orders.updated_at','desc')->

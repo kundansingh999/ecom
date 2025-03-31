@@ -7,7 +7,10 @@ use App\Http\Controllers\AdminController\AdminController;
 use App\Http\Controllers\CategoryController\categorycontroller;
 use App\Http\Controllers\ProductController\productcontroller;
 use App\Http\Controllers\orderController\ordercontroller;
+use App\Http\Controllers\invoivecontroller\invoicecontroller;
+
 use App\Http\Middleware\checkadmin;
+
 
 
 
@@ -29,7 +32,7 @@ Route::middleware('auth')->group(function () {
 
     Route::prefix('admin')->middleware(['checkadmin'])->group(function(){
         Route::get('edit-product/{id}', [Admincontroller::class,'EditProduct']);
-        Route::get('dashboard', [AdminController::class,'dashboard']);
+        Route::get('dashboard', [AdminController::class,'dashboard'])->name('admin/dashboard');
         Route::get('product', [AdminController::class,'product']);
         Route::get('category', [AdminController::class,'category']);
         Route::get('payment', [AdminController::class,'payment']);
@@ -40,6 +43,12 @@ Route::middleware('auth')->group(function () {
         Route::get('admin-account-page', [AdminController::class,'admin_account_page']);
         Route::get('user', [AdminController::class,'user']);
         Route::get('invoice', [AdminController::class,'invoice']);
+        Route::get('invoice/create', [AdminController::class,'invoice_create']);
+        Route::get('directinvoice', [AdminController::class,'direct_invoice']);
+        Route::get('direct-invoice/{invoice_no}', [AdminController::class,'print_invoice']);
+
+
+
         Route::get('search-data', [AdminController::class,'search_data']);
         Route::get('product-create', [AdminController::class,'product_create']);
         Route::get('category-create', [AdminController::class,'category_create']);
@@ -125,4 +134,6 @@ Route::get('admin/convert-admin/{id}', [productcontroller::class,'convert_admin'
 
 Route::get('admin/block-user/{id}', [productcontroller::class,'block_user']);
 Route::get('admin/unblock-user/{id}', [productcontroller::class,'unblock_user']);
+
+Route::post('create-invoice', [invoicecontroller::class,'createinvoice']);
 
