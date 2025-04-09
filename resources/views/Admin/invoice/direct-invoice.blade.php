@@ -8,6 +8,8 @@
         @endif
 
         <h4>Direct Invoice</h4>
+        <a href="{{url('admin/invoice/create') }}" class="btn btn-success btn-sm">Create Invoice</a>
+
         <table class="table table-bordered" style="width:100%">
             <thead>
                 <tr>

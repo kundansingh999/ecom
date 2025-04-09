@@ -4,128 +4,178 @@
     <form action="{{url('create-invoice')}}" method="post" enctype="multipart/form-data">
         @csrf
 
-
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="product name">Customer Name</label>
-                    <input type="text" class="form-control customername" id="customername" name="customer_name">
+                    <label for="customername">Customer Name</label>
+                    <input type="text" class="form-control customername" id="customername" name="customer_name"
+                        required>
                     <h6 class="productnameError error"></h6>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="product-price">Customer Mobile</label>
-                    <input type="number" class="form-control productprice" id="customer-mobile" name="customer_mobile">
+                    <label for="customer-mobile">Customer Mobile</label>
+                    <input type="number" class="form-control productprice" id="customer-mobile" name="customer_mobile"
+                        required>
                     <h6 class="productpriceError error"></h6>
                 </div>
-
             </div>
-
         </div>
 
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="product-name">Product Quantity</label>
-                    <input type="number" class="form-control productquantity" id="product-quantity"
-                        name="product_quantity">
+                    <label for="invoice-date">Invoice Date</label>
+                    <input type="date" class="form-control" id="invoice-date" name="invoice_date">
                     <h6 class="productquantityError error"></h6>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="product-name">Invoive Date</label>
-                    <input type="date" class="form-control productquantity" id="invoice-date"
-                        name="invoice_date">
-                    <h6 class="productquantityError error"></h6>
-                </div>
-            </div>
-
-         </div>
-
- 
-        <div class="row">
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="product-name">Product Name</label>
-                    <select class="form-select" id="StatusProduct" name="product_name">
-                        @foreach($product as $product)
-                        <option value="{{$product->product_name}}">{{$product->product_name}}</option>
-                        @endforeach
+                    <label for="payment-method">Payment Method</label>
+                    <select class="form-select" id="payment-method" name="status">
+                        <option value="cash">Cash</option>
+                        <option value="online">Online</option>
                     </select>
                 </div>
             </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="product-name">Product price</label>
-                    <input type="number" class="form-control productquantity" id="product-price"
-                        name="product_price">
-                    <h6 class="productquantityError error"></h6>
-                </div>
-            </div>
-
-         </div>
-        <div class="row">
-             <div class="col-md-6">
-                <div class="form-group">
-                    <label for="discount-price">Discount Price</label>
-                    <input type="number" class="form-control discountprice" id="discount-price" name="discount_price">
-                    <h6 class="discountpriceError error"></h6>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="product-price">Payment Method</label>
-                    <select class="form-select" id="StatusProduct" name="status">
-                        <option value="cash">cash</option>
-                        <option value="online">online</option>
-                    </select>
-                </div>
-            </div>
-
         </div>
-        <label for="product-name">Product Size</label>
 
-        <div class="row">
-            <div class="col-md-1">
-                <div class="form-group">
-                    <input class="form-check-input" value="s" name="product_size[]" type="checkbox">S
+        <h3 class="mt-4">Add Products</h3>
+        <div id="product-items">
+            <div class="row product-item mb-3">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="product-name-0">Product Name</label>
+                        <select class="form-select product-name" id="product-name-0"
+                            name="product_items[0][product_name]">
+                            @foreach($product as $prod)
+                            <option value="{{$prod->product_name}}" data-price="{{$prod->product_price}}">
+                                {{$prod->product_name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label for="product-size-0">Product Size</label>
+                        <select class="form-select product-size" id="product-size-0"
+                            name="product_items[0][product_size]">
+                            <option value="S">S</option>
+                            <option value="M">M</option>
+                            <option value="L">L</option>
+                            <option value="XL">XL</option>
+                            <option value="XXL">XXL</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label for="product-price-0">Product Price</label>
+                        <input type="number" class="form-control product-price-input" id="product-price-0"
+                            name="product_items[0][product_price]" readonly>
+                        <h6 class="productquantityError error"></h6>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label for="product-quantity-0">Product Quantity</label>
+                        <input type="number" class="form-control product-quantity-input" id="product-quantity-0"
+                            name="product_items[0][product_quantity]" value="1">
+                        <h6 class="productquantityError error"></h6>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label for="discount-price-0">Discount Price</label>
+                        <input type="number" class="form-control discount-price-input" id="discount-price-0"
+                            name="product_items[0][discount_price]" value="0">
+                        <h6 class="discountpriceError error"></h6>
+                    </div>
+                </div>
+                <div class="col-md-1 align-self-end">
+                    <button type="button" class="btn btn-danger remove-item">Remove</button>
                 </div>
             </div>
-            <div class="col-md-1">
-                <div class="form-group">
-                    <input class="form-check-input" value="m" name="product_size[]" type="checkbox">M
-                </div>
-            </div>
-
-            <div class="col-md-1">
-                <div class="form-group">
-                    <input class="form-check-input" value="l" name="product_size[]" type="checkbox">L
-                </div>
-            </div>
-
-            <div class="col-md-1">
-                <div class="form-group">
-                    <input class="form-check-input" value="xl" name="product_size[]" type="checkbox">XL
-                </div>
-            </div>
-
-            <div class="col-md-1">
-                <div class="form-group">
-                    <input class="form-check-input" value="xxl" name="product_size[]" type="checkbox">XXL
-                </div>
-            </div>
-
-
-
-
-
         </div>
-        <br>
-        <button type="submit" class="btn btn-primary">Add Product</button>
+
+        <button type="button" class="btn btn-success mt-3" id="add-product">Add Product</button>
+
+        <br><br>
+        <button type="submit" class="btn btn-primary">Submit Invoice</button>
     </form>
 </div>
 
+<script>
+$(document).ready(function() {
+    let itemCount = 1;
+
+    $("#add-product").click(function() {
+        let newProductItem = `
+                <div class="row product-item mb-3">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="product-name-${itemCount}">Product Name</label>
+                            <select class="form-select product-name" id="product-name-${itemCount}" name="product_items[${itemCount}][product_name]">
+                                @foreach($product as $prod)
+                                    <option value="{{$prod->product_name}}" data-price="{{$prod->product_price}}">{{$prod->product_name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label for="product-size-${itemCount}">Product Size</label>
+                            <select class="form-select product-size" id="product-size-${itemCount}" name="product_items[${itemCount}][product_size]">
+                                <option value="S">S</option>
+                                <option value="M">M</option>
+                                <option value="L">L</option>
+                                <option value="XL">XL</option>
+                                <option value="XXL">XXL</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label for="product-price-${itemCount}">Product Price</label>
+                            <input type="number" class="form-control product-price-input" id="product-price-${itemCount}" name="product_items[${itemCount}][product_price]" readonly>
+                            <h6 class="productquantityError error"></h6>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label for="product-quantity-${itemCount}">Product Quantity</label>
+                            <input type="number" class="form-control product-quantity-input" id="product-quantity-${itemCount}" name="product_items[${itemCount}][product_quantity]" value="1">
+                            <h6 class="productquantityError error"></h6>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label for="discount-price-${itemCount}">Discount Price</label>
+                            <input type="number" class="form-control discount-price-input" id="discount-price-${itemCount}" name="product_items[${itemCount}][discount_price]" value="0">
+                            <h6 class="discountpriceError error"></h6>
+                        </div>
+                    </div>
+                    <div class="col-md-1 align-self-end">
+                        <button type="button" class="btn btn-danger remove-item">Remove</button>
+                    </div>
+                </div>
+            `;
+        $("#product-items").append(newProductItem);
+        itemCount++;
+    });
+
+    $("#product-items").on('click', '.remove-item', function() {
+        $(this).closest('.product-item').remove();
+    });
+
+    $("#product-items").on('change', '.product-name', function() {
+        const selectedOption = $(this).find(':selected');
+        const price = selectedOption.data('price');
+        $(this).closest('.product-item').find('.product-price-input').val(price);
+    });
+});
+</script>
 
 @include('Admin.bin.footer')

@@ -83,6 +83,11 @@
                             <a class="nav-link " href="{{url('admin/user')}}" aria-disabled="true">User</a>
                         </li>
 
+                        <li class="nav-item">
+                            <a class="nav-link " href="{{url('admin/directinvoice')}}" aria-disabled="true">Invoice</a>
+                        </li>
+
+
 
                     </ul>
                     <form class="d-flex" role="search">

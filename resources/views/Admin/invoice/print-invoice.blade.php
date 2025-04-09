@@ -73,7 +73,7 @@
 <button class="print invoice" onclick="printInvoice()">Print invoice</button>
     <div class="container printpage">
         <div class="header">
-            <img src="logo.png" alt="Business Logo">
+            <img src="{{asset('assets\img\logo.png')}}" alt="Business Logo">
             <h1>Invoice</h1>
             <p>Invoice #:{{$data->invoice_no}}</p>
             @php
