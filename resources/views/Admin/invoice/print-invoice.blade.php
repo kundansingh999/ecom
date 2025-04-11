@@ -70,7 +70,7 @@
 </head>
 
 <body>
-<button class="print invoice" onclick="printInvoice()">Print invoice</button>
+    <button class="print invoice" onclick="printInvoice()">Print invoice</button>
     <div class="container printpage">
         <div class="header">
             <img src="{{asset('assets\img\logo.png')}}" alt="Business Logo">
@@ -86,15 +86,16 @@
             <div>
                 <h3>Billing Information</h3>
                 <p>{{$data->customer_name}}</p>
-                 <p>Phone:  {{$data->customer_mobile}}</p>
+                <p>Phone: {{$data->customer_mobile}}</p>
+                <p>Payment Method :{{$data->payment_method}}</p>
             </div>
             <div>
                 <h3>Shop Information</h3>
                 <p>Name:- E Shop</p>
                 <p>Address:-bhagwanpur,muzaffarpur,842002</p>
 
- 
-                 <p>Phone:- 9525249426</p>
+
+                <p>Phone:- 9525249426</p>
             </div>
         </div>
 
@@ -104,39 +105,52 @@
                     <th>Product Name</th>
                     <th>Size</th>
                     <th>Quantity</th>
-                     <th>Total</th>
+                    <th>Product Price</th>
+                    <th>Total Price</th>
                     <th>discount</th>
-                    <th>payment method</th>
 
 
                 </tr>
             </thead>
             <tbody>
+                @foreach($product as $inv)
+
                 <tr>
-                    <td>{{$data->product_name}}</td>
-                    <td>{{$data->product_size}}</td>
-                    <td>{{$data->product_quantity}}</td>
-                    <td>{{$data->product_price}}</td>
-                    <td>{{$data->discount_price}}</td>
-                    <td>{{$data->payment_method}}</td>
+                    <td>{{$inv->product_name}}</td>
+                    <td>{{$inv->product_size}}</td>
+                    <td>{{$inv->product_quantity}}</td>
+                    <td>{{$inv->product_price}}</td>
+                    <td>{{$inv->total_product_price}}</td>
+
+                    <td>{{$inv->discount_price}}</td>
 
                 </tr>
+                @endforeach
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>Total Amount</td>
+
+                    <td>{{$total_price}}</td>
+                </tr>
             </tbody>
+
         </table>
         <div class="footer">
             Thank you for shoping clothes
         </div>
 </body>
 <script>
-        function printInvoice() {
-            var printContents = document.querySelector('.printpage').innerHTML;
-            var originalContents = document.body.innerHTML;
+function printInvoice() {
+    var printContents = document.querySelector('.printpage').innerHTML;
+    var originalContents = document.body.innerHTML;
 
-            document.body.innerHTML = printContents;
-            window.print();
-            document.body.innerHTML = originalContents;
-            location.reload(); // Page ko reload kare taki original state wapas aaye
-        }
-    </script>
+    document.body.innerHTML = printContents;
+    window.print();
+    document.body.innerHTML = originalContents;
+    location.reload(); // Page ko reload kare taki original state wapas aaye
+}
+</script>
 
 </html>

@@ -13,6 +13,8 @@ use App\Models\admin;
 use App\Models\invoice;
 use App\Models\brand;
 use App\Models\User;
+use App\Models\invoice_product;
+
 use Carbon\Carbon;
 use App\Models\search_master;
 
@@ -78,14 +80,28 @@ class AdminController extends Controller
     }
 
     public function direct_invoice(){
+
+
+
         $invoice =invoice::where('status',1)->get();
          return view('Admin.invoice.direct-invoice',['invoice'=>$invoice]);
     }
 
     public function print_invoice($invoice_no){
         $invoice =invoice::where('status',1)->where('invoice_no',$invoice_no)->first();
-        if($invoice){
-            return view('Admin.invoice.print-invoice',['data'=>$invoice]);
+
+        $id= $invoice->id;
+
+        $product = invoice::where('invoices.status',1)->
+        leftjoin('invoice_products','invoices.id', '=', 'invoice_products.invoice_id')->
+         where('invoices.id',$id)->
+        select('invoice_products.*', 'invoices.*')->get();
+
+        $total_price = $product->sum('total_product_price');
+        // dd($total_price);
+
+         if($invoice){
+            return view('Admin.invoice.print-invoice',['data'=>$invoice,'product'=>$product,'total_price'=>$total_price]);
 
         }else{
             return back();

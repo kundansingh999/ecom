@@ -20,14 +20,9 @@ class invoicecontroller extends Controller
         $pro-> invoice_no =$invoice;
         $pro->customer_name =$request->customer_name	;
         $pro->customer_mobile = $request->customer_mobile;
-        // $pro->product_quantity = $request->product_quantity;
-        // $pro->discount_price = $request->discount_price;
-        // $pro->product_name= $request->product_name;
-        // $pro->product_price= $request->product_price;
-        $pro->invoice_date	 = $request->invoice_date;
+         $pro->invoice_date	 = $request->invoice_date;
         $pro->payment_method = $request->status;
-        // $pro->product_size =$request->product_size;
-       $invoice_data = $pro->save();
+        $invoice_data = $pro->save();
 
        if ($request->has('product_items') && is_array($request->product_items)) {
         foreach ($request->product_items as $item) {
@@ -36,21 +31,23 @@ class invoicecontroller extends Controller
             $invoiceProduct->product_name = $item['product_name'];
             $invoiceProduct->product_quantity = $item['product_quantity'] ?? 1;
             $invoiceProduct->product_price = $item['product_price'] ?? 0;
+            $invoiceProduct->total_product_price = ($item['product_price'] ?? 0) * ($item['product_quantity'] ?? 1); // Ensure unit price vs. total price is handled correctly
             $invoiceProduct->discount_price = $item['discount_price'] ?? 0;
             $invoiceProduct->product_size = $item['product_size'] ?? null;
             $invoiceProduct->save();
         }
     }
 
+            return redirect()->to("admin/directinvoice");
 
 
 
         // dd($invoice_data);
-        if($invoice_data){
-            $id = $pro->invoice_no;
-            return redirect()->to("admin/direct-invoice/$id");
-                }        
-        return back();
+        // if($invoice_data){
+        //     $id = $pro->invoice_no;
+        //     return redirect()->to("admin/direct-invoice/$id");
+        //         }        
+        // return back();
 
     }
 }
