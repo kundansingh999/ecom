@@ -81,9 +81,7 @@ class AdminController extends Controller
 
     public function direct_invoice(){
 
-
-
-        $invoice =invoice::where('status',1)->get();
+        $invoice =invoice::where('status',1)->orderBy('created_at','desc')->get();
          return view('Admin.invoice.direct-invoice',['invoice'=>$invoice]);
     }
 
@@ -183,4 +181,18 @@ public function banner_create(){
         return view('Admin.slider.create-slider',['category'=>$category]);
     }
 
-}
+    public function search_invoice(Request $request)
+    {
+        $term = $request->search;
+        $invoice = Invoice::where('status', 1)
+            ->orderBy('created_at', 'desc')
+            ->where(function ($query) use ($term) {
+                $query->orWhere('customer_name', 'LIKE', '%' . $term . '%')
+                      ->orWhere('invoice_no', 'LIKE', '%' . $term . '%')
+                      ->orWhere('customer_mobile', 'LIKE', '%' . $term . '%');
+            })
+            ->get();
+    
+     
+        return view('Admin.invoice.seach_invoice', ['invoice' => $invoice]);
+    }}

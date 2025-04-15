@@ -135,7 +135,7 @@
             </tbody>
         </table>
         <div class="footer">
-            Thank you for shoping clothes
+            Thank you for shoping
         </div>
 </body>
 

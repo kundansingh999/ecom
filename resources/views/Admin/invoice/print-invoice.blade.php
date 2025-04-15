@@ -130,15 +130,17 @@
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td>Total Amount</td>
+                    <td >Total Amount</td>
 
                     <td>{{$total_price}}</td>
+                    <td></td>
+
                 </tr>
             </tbody>
 
         </table>
-        <div class="footer">
-            Thank you for shoping clothes
+        <div class="footer" style="font-weight:600;">
+            Thank you for Shopping
         </div>
 </body>
 <script>

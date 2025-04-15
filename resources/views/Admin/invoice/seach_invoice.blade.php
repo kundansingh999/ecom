@@ -31,7 +31,7 @@
                     <th scope="col">Invoice id</th>
                     <th scope="col"> customer Name</th>
                     <th scope="col">customer mobile</th>
-                    <th scope="col">Invoice date</th>
+                     <th scope="col">Invoice date</th>
                     <th scope="col">Action</th>
                 </tr>
             </thead>
@@ -47,17 +47,16 @@
                     <td>{{$invoice->invoice_no}}</td>
                     <td>{{$invoice->customer_name}}</td>
                     <td>{{$invoice->customer_mobile}}</td>
-                    <td>{{$invoice->invoice_date}}</td>
+                     <td>{{$invoice->invoice_date}}</td>
 
 
 
 
                     <td>
-                        <a href="{{url('admin/direct-invoice/'.$invoice->invoice_no) }}"
-                            class="btn btn-success btn-sm">View Invoice</a>
-
-                    </td>
-                </tr>
+                         <a href="{{url('admin/direct-invoice/'.$invoice->invoice_no) }}" class="btn btn-success btn-sm">View Invoice</a>
+  
+                      </td>
+                 </tr>
                 @endforeach
 
 

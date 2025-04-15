@@ -46,6 +46,9 @@ Route::middleware('auth')->group(function () {
         Route::get('invoice/create', [AdminController::class,'invoice_create']);
         Route::get('directinvoice', [AdminController::class,'direct_invoice']);
         Route::get('direct-invoice/{invoice_no}', [AdminController::class,'print_invoice']);
+        Route::get('search-invoice', [AdminController::class,'search_invoice']);
+        
+
 
 
 

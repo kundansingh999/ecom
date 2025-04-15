@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\invoice;
 use App\Models\invoice_product;
+use Illuminate\Support\Facades\Session;
+
 
 
 
@@ -37,6 +39,7 @@ class invoicecontroller extends Controller
             $invoiceProduct->save();
         }
     }
+    $request->session()->flash('success', 'Invoice create successfully.');
 
             return redirect()->to("admin/directinvoice");
 
@@ -50,4 +53,11 @@ class invoicecontroller extends Controller
         // return back();
 
     }
+public function search_invoice(Request $request)
+{
+    
+}
+
+
+
 }
